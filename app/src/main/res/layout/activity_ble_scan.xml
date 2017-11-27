@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="34.7dp"
+            android:gravity="center_horizontal"
+            android:letterSpacing="0.05"
+            android:text="블루투스 연결"
+            android:textColor="#ffffff"
+            android:textSize="18.3sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="98dp"
+        android:src="@mipmap/user" />
+
+    <TextView
+        android:id="@+id/device_list_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="58.3dp"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="-7.7sp"
+        android:text="블루투스 기기"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18.3sp"
+        android:textStyle="bold" />
+
+
+    <LinearLayout
+        android:id="@+id/navigation_move_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/device_list_text"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/temp_btn_moveID"
+            android:layout_width="150dp"
+            android:layout_weight="0.5"
+            android:layout_height="50dp"
+            android:text="메인 이동 버튼" />
+
+        <Button
+            android:layout_below="@id/temp_btn_moveID"
+            android:id="@+id/temp_btn_scan"
+            android:layout_width="150dp"
+            android:layout_weight="0.5"
+            android:layout_height="50dp"
+            android:text="블루투스 스캔 시작" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/scan_device_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="false"
+        android:layout_below="@id/navigation_move_btn"
+        android:layout_marginBottom="23dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="16.7dp" />
+
+</RelativeLayout>

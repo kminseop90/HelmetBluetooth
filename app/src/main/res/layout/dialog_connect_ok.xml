@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:id="@+id/connect_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:src="@mipmap/success" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="19dp"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="-7.7sp"
+        android:text="연결되었습니다."
+        android:textColor="#575757"
+        android:textSize="18.3sp" />
+
+    <TextView
+        android:id="@+id/connect_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="43.3dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:letterSpacing="0.58"
+        android:text="확 인"
+        android:textColor="#ffffff"
+        android:textSize="20dp" />
+
+
+</LinearLayout>

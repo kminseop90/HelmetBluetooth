@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+
+    <TextView
+        android:id="@+id/common_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="title" />
+
+    <TextView
+        android:id="@+id/common_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="message" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right">
+
+        <Button
+            android:id="@+id/common_positive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="positive" />
+
+        <Button
+            android:id="@+id/common_negative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="negative" />
+    </LinearLayout>
+</LinearLayout>
