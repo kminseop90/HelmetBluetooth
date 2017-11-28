@@ -99,7 +99,7 @@ public class SettingFragment extends BaseFragment implements MainActivity.Fragme
         Intent i = new Intent(getContext(), BLESettingActivity.class);
         i.putExtra(MainActivity.EXTRAS_DEVICE_ADDRESS, mAddress);
         i.putExtra(MainActivity.EXTRAS_DEVICE_NAME, mName);
-        startActivityForResult(i, 0);
+        ((MainActivity)getContext()).startActivityForResult(i, 0);
     }
 
     @Override

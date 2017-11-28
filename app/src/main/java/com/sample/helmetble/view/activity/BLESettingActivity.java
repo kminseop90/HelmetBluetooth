@@ -97,4 +97,9 @@ public class BLESettingActivity extends BaseActivity {
             ((ScanDeviceAdapter) deviceList.getAdapter()).add(device);
         }
     };
+
+    @OnClick(R.id.setting_back_img)
+    public void onBackClick(View v) {
+        finish();
+    }
 }

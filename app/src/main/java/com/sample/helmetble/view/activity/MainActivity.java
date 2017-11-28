@@ -314,6 +314,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d(TAG, String.format("RequestCode = %d, ResultCode = %d",requestCode, resultCode));
         if(requestCode == 0) { // bluetoothSetting
             if(resultCode == RESULT_OK && data != null) {
                 mDeviceName = data.getStringExtra(EXTRAS_DEVICE_NAME);
