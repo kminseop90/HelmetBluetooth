@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.sample.helmetble.R;
 import com.sample.helmetble.base.BaseActivity;
 import com.sample.helmetble.base.BaseFragment;
+import com.sample.helmetble.model.vo.VODataFilter;
 import com.sample.helmetble.service.BluetoothLeService;
 import com.sample.helmetble.service.SampleGattAttributes;
 import com.sample.helmetble.view.dialog.ConnectOKDialog;
@@ -49,6 +50,11 @@ public class MainActivity extends BaseActivity {
     private StringBuffer gattDataBuffer = new StringBuffer();
     private FragmentDataPath fragmentDataPath;
     private FragmentManager fm = getSupportFragmentManager();
+
+    ControllerFragment controllerFragment = new ControllerFragment();
+    GraphFragment graphFragment = new GraphFragment();
+    SettingFragment settingFragment = new SettingFragment();
+
 
     public interface FragmentDataPath {
         void onGattDataUpdate(String gattData);
@@ -93,14 +99,14 @@ public class MainActivity extends BaseActivity {
             BaseFragment currentFragment;
             switch (position) {
                 case 0:
-                    currentFragment = new ControllerFragment();
+                    currentFragment = controllerFragment;
                     break;
                 case 1:
-                    currentFragment = new GraphFragment();
+                    currentFragment = graphFragment;
                     break;
                 case 2:
                 default:
-                    currentFragment = new SettingFragment();
+                    currentFragment = settingFragment;
                     break;
             }
             Bundle b = new Bundle();
@@ -214,8 +220,9 @@ public class MainActivity extends BaseActivity {
         }
     };
 
-    public void send() {
+    public void send(VODataFilter filterData) {
         mBluetoothLeService.startFileSave();
+        mBluetoothLeService.setFilterData(filterData);
         if (mGattCharacteristics != null) {
             final BluetoothGattCharacteristic characteristic =
                     mGattCharacteristics.get(3).get(1);

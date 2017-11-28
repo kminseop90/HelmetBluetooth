@@ -16,6 +16,8 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.sample.helmetble.model.vo.VODataFilter;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -56,6 +58,7 @@ public class BluetoothLeService extends Service {
             UUID.fromString(SampleGattAttributes.HEART_RATE_MEASUREMENT);
 
     private FileOutputStream fos;
+    private VODataFilter filterData;
 
     public void startFileSave() {
         String dirPath = "sdcard";
@@ -69,6 +72,10 @@ public class BluetoothLeService extends Service {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+   }
+
+   public void setFilterData(VODataFilter filterData) {
+       this.filterData = filterData;
    }
 
    public void finishFileSave() {
@@ -163,8 +170,10 @@ public class BluetoothLeService extends Service {
                 final StringBuilder stringBuilder = new StringBuilder(data.length);
                 for (byte byteChar : data)
                     stringBuilder.append(String.format("%02X ", byteChar));
-                intent.putExtra(EXTRA_DATA, new String(data) + "\n" + stringBuilder.toString());
-                gattDataSave(stringBuilder.toString());
+                if(!filterData.isFilter(stringBuilder.toString())) {
+                    intent.putExtra(EXTRA_DATA, new String(data) + "\n" + stringBuilder.toString());
+                    gattDataSave(stringBuilder.toString());
+                }
             }
         }
         sendBroadcast(intent);

@@ -155,6 +155,7 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:text="0"
                     android:id="@+id/input_gyroX_x"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -169,6 +170,7 @@
 
 
                 <EditText
+                    android:text="100"
                     android:id="@+id/input_gyroX_y"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -224,6 +226,7 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:text="0"
                     android:id="@+id/input_gyroY_x"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -239,6 +242,7 @@
 
 
                 <EditText
+                    android:text="100"
                     android:id="@+id/input_gyroY_y"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -294,6 +298,7 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:text="0"
                     android:id="@+id/input_gyroZ_x"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -307,6 +312,7 @@
 
 
                 <EditText
+                    android:text="100"
                     android:id="@+id/input_gyroZ_y"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -418,6 +424,7 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:text="0"
                     android:id="@+id/input_accelX_x"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -432,6 +439,7 @@
 
 
                 <EditText
+                    android:text="100"
                     android:id="@+id/input_accelX_y"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -485,6 +493,7 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:text="0"
                     android:id="@+id/input_accelY_x"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -499,6 +508,7 @@
 
 
                 <EditText
+                    android:text="100"
                     android:id="@+id/input_accelY_y"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -531,6 +541,7 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:text="0"
                     android:id="@+id/input_accelZ_x"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -545,6 +556,7 @@
 
 
                 <EditText
+                    android:text="100"
                     android:id="@+id/input_accelZ_y"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
