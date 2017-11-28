@@ -25,6 +25,9 @@ import butterknife.ButterKnife;
 
 public class GraphFragment extends BaseFragment implements MainActivity.FragmentDataPath{
 
+    public static LineChart obj_line_gyro = null;
+    public static LineChart obj_line_accel = null;
+
     @BindView(R.id.temp_gatt_data_tv)
     TextView gattDataView;
     @BindView(R.id.chart_gyro)
@@ -45,18 +48,35 @@ public class GraphFragment extends BaseFragment implements MainActivity.Fragment
         View v = inflater.inflate(R.layout.fragment_graph, container, false);
         ButterKnife.bind(this, v);
 
-        mGyroChart.setDrawGridBackground(false);
-        mGyroChart.getDescription().setEnabled(false);
+        if(obj_line_gyro == null){
+            mGyroChart.setDrawGridBackground(false);
+            mGyroChart.getDescription().setEnabled(false);
 
-        mGyroChart.setData(new LineData());
-        mGyroChart.invalidate();
+            mGyroChart.setData(new LineData());
+            mGyroChart.invalidate();
+            obj_line_gyro = mGyroChart;
+        }
 
-        mAccelChart.setDrawGridBackground(false);
-        mAccelChart.getDescription().setEnabled(false);
+        if(obj_line_accel == null){
+            mAccelChart.setDrawGridBackground(false);
+            mAccelChart.getDescription().setEnabled(false);
 
-        mAccelChart.setData(new LineData());
-        mAccelChart.invalidate();
+            mAccelChart.setData(new LineData());
+            mAccelChart.invalidate();
+            obj_line_accel = mAccelChart;
+        }
 
+
+        mAccelChart.setData(obj_line_accel.getData());
+        mGyroChart.setData(obj_line_gyro.getData());
+
+        if(mGyroChart.getData().getEntryCount() > 0){
+            mGyroChart.setVisibleXRangeMaximum(6);
+        }
+
+        if(mAccelChart.getData().getEntryCount() > 0){
+            mAccelChart.setVisibleXRangeMaximum(6);
+        }
 
         btnTmp.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){

@@ -12,8 +12,10 @@ import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Binder;
 import android.os.IBinder;
+import android.telephony.SmsManager;
 import android.util.Log;
 
 import com.sample.helmetble.model.vo.VODataFilter;
@@ -100,7 +102,23 @@ public class BluetoothLeService extends Service {
 
         @Override
         public void sendMessage() {
-            // TODO 여기다가 메세지 보내는코드 넣어
+            String KEY_SENDMESSAGE = "is_send_msg";
+            String KEY_PHONE_PREFERENCE = "user_phone";
+
+            SharedPreferences prefs = getApplicationContext().getSharedPreferences("PrefName", getApplicationContext().MODE_PRIVATE);
+            boolean isSendMsg = prefs.getBoolean(KEY_SENDMESSAGE, true);
+            String userPhone = prefs.getString(KEY_PHONE_PREFERENCE, "");
+
+            if (isSendMsg) {
+                try {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(userPhone, null, "Test SMS Sent", null, null);
+                    Log.d(TAG, "sendMessage: " + isSendMsg);
+                } catch (Exception e) {
+                    Log.d(TAG, "sendMessage: " + isSendMsg);
+                    e.printStackTrace();
+                }
+            }
         }
     };
 
