@@ -27,11 +27,11 @@
     </RelativeLayout>
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="131.3dp"
+        android:layout_height="131.3dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="98dp"
-        android:src="@mipmap/user" />
+        android:src="@mipmap/avatar_astronaut" />
 
     <TextView
         android:id="@+id/device_list_text"
@@ -61,14 +61,6 @@
             android:layout_weight="0.5"
             android:layout_height="50dp"
             android:text="메인 이동 버튼" />
-
-        <Button
-            android:layout_below="@id/temp_btn_moveID"
-            android:id="@+id/temp_btn_scan"
-            android:layout_width="150dp"
-            android:layout_weight="0.5"
-            android:layout_height="50dp"
-            android:text="블루투스 스캔 시작" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sample.helmetble.R;
+import com.sample.helmetble.adapter.ItemDecorator;
 import com.sample.helmetble.adapter.ScanDeviceAdapter;
 import com.sample.helmetble.base.BaseActivity;
 
@@ -55,6 +56,7 @@ public class BLESettingActivity extends BaseActivity {
 
         handler = new Handler();
         deviceList.setAdapter(new ScanDeviceAdapter(onItemClickListener));
+        deviceList.addItemDecoration(new ItemDecorator());
         deviceList.setLayoutManager(new LinearLayoutManager(this));
 
         if(getIntent() != null) {

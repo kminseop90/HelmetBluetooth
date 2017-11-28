@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.sample.helmetble.R;
+import com.sample.helmetble.adapter.ItemDecorator;
 import com.sample.helmetble.adapter.PhoneAdapter;
 import com.sample.helmetble.base.BaseActivity;
 import com.sample.helmetble.model.vo.Phone;
@@ -33,6 +34,7 @@ public class MessageActivity extends BaseActivity {
     private void init() {
         phoneAdapter = new PhoneAdapter();
         messageList.setAdapter(phoneAdapter);
+        messageList.addItemDecoration(new ItemDecorator());
         messageList.setLayoutManager(new LinearLayoutManager(this));
         ArrayList<Phone> phones = new ArrayList<>();
         for(int i = 0 ; i < 3 ; i++ ) {

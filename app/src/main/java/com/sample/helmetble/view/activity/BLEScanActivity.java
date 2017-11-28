@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.sample.helmetble.R;
+import com.sample.helmetble.adapter.ItemDecorator;
 import com.sample.helmetble.adapter.ScanDeviceAdapter;
 import com.sample.helmetble.base.BaseActivity;
 
@@ -64,6 +65,7 @@ public class BLEScanActivity extends BaseActivity {
         }
 
         scanDeviceList.setLayoutManager(new LinearLayoutManager(this));
+        scanDeviceList.addItemDecoration(new ItemDecorator());
         scanDeviceList.setAdapter(new ScanDeviceAdapter(new ScanDeviceAdapter.OnItemClickListener() {
             @Override
             public void onDeviceClick(BluetoothDevice device) {
@@ -82,19 +84,15 @@ public class BLEScanActivity extends BaseActivity {
                 finish();
             }
         });
-        findViewById(R.id.temp_btn_scan).setOnClickListener(new View.OnClickListener() {
+
+        ((ScanDeviceAdapter) scanDeviceList.getAdapter()).clear();
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                ((ScanDeviceAdapter) scanDeviceList.getAdapter()).clear();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        bluetoothAdapter.stopLeScan(scanCallback);
-                    }
-                }, 5000);
-                bluetoothAdapter.startLeScan(scanCallback);
+            public void run() {
+                bluetoothAdapter.stopLeScan(scanCallback);
             }
-        });
+        }, 5000);
+        bluetoothAdapter.startLeScan(scanCallback);
     }
 
 

@@ -2,31 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="57dp"
-    android:orientation="horizontal">
-
+    android:background="#ffffff"
+    android:orientation="horizontal"
+    android:paddingLeft="10dp">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="27.3dp"
+        android:layout_height="27.3dp"
         android:layout_gravity="center"
         android:layout_marginLeft="32dp"
         android:src="@mipmap/bluetooth" />
 
     <TextView
-        android:layout_marginLeft="13dp"
         android:id="@+id/scan_device_name"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginLeft="13dp"
         android:textColor="#172c54"
         android:textSize="15.3dp" />
 
     <TextView
-        android:layout_marginLeft="13dp"
         android:id="@+id/scan_device_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginLeft="13dp"
         android:textColor="#172c54"
         android:textSize="15.3dp" />
 
