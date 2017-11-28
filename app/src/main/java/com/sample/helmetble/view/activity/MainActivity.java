@@ -13,6 +13,7 @@ import android.os.IBinder;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.sample.helmetble.R;
 import com.sample.helmetble.base.BaseActivity;
@@ -27,6 +28,7 @@ import com.sample.helmetble.view.fragment.SettingFragment;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,6 +36,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
 
@@ -81,7 +84,6 @@ public class MainActivity extends BaseActivity {
         Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
         bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
     }
-
 
 
     TabLayout.OnTabSelectedListener tabSelectedListener = new TabLayout.OnTabSelectedListener() {
@@ -135,7 +137,7 @@ public class MainActivity extends BaseActivity {
                 dialog.show();
                 displayGattServices(mBluetoothLeService.getSupportedGattServices());
             } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
-                if(isDataConnection) {
+                if (isDataConnection) {
                     displayData(intent.getStringExtra(BluetoothLeService.EXTRA_DATA));
                 }
             }
@@ -165,13 +167,13 @@ public class MainActivity extends BaseActivity {
     public void fileSave() {
         String dirPath = "sdcard";
         File file = new File(dirPath);
-        if(!file.exists()) {
+        if (!file.exists()) {
             file.mkdir();
         }
         FileOutputStream fos = null;
         File saveFile = new File(dirPath + "/GattData.txt");
         try {
-            fos =  new FileOutputStream(saveFile);
+            fos = new FileOutputStream(saveFile);
             fos.write((gattDataBuffer.toString()).getBytes());
             fos.close();
         } catch (IOException e) {
@@ -245,6 +247,43 @@ public class MainActivity extends BaseActivity {
         fileSave();
     }
 
+    @OnClick(R.id.send_01)
+    public void send01Click() {
+        if (mGattCharacteristics != null) {
+            final BluetoothGattCharacteristic characteristic =
+                    mGattCharacteristics.get(3).get(0);
+            writeCharac(characteristic, 1);
+        }
+    }
+
+    @OnClick(R.id.send_02)
+    public void send02Click() {
+        if (mGattCharacteristics != null) {
+            final BluetoothGattCharacteristic characteristic =
+                    mGattCharacteristics.get(3).get(0);
+            writeCharac(characteristic, 2);
+        }
+    }
+
+    public void writeCharac(BluetoothGattCharacteristic charac, int value) {
+        if (charac == null) {
+            Log.e(TAG, "char not found!");
+        }
+
+        int unixTime = value;
+        String unixTimeString = Integer.toHexString(unixTime);
+        byte[] byteArray = new BigInteger(unixTimeString, 16).toByteArray();
+        charac.setValue(byteArray);
+        boolean status = mBluetoothLeService.writeCharacteristic(charac);
+        if (status) {
+            Toast.makeText(this, "Written Successfully", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Error writing characteristic", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -314,9 +353,9 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d(TAG, String.format("RequestCode = %d, ResultCode = %d",requestCode, resultCode));
-        if(requestCode == 0) { // bluetoothSetting
-            if(resultCode == RESULT_OK && data != null) {
+        Log.d(TAG, String.format("RequestCode = %d, ResultCode = %d", requestCode, resultCode));
+        if (requestCode == 0) { // bluetoothSetting
+            if (resultCode == RESULT_OK && data != null) {
                 mDeviceName = data.getStringExtra(EXTRAS_DEVICE_NAME);
                 mDeviceAddress = data.getStringExtra(EXTRAS_DEVICE_ADDRESS);
 
