@@ -3,6 +3,7 @@ package com.sample.helmetble.view.fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -161,20 +162,23 @@ public class GraphFragment extends BaseFragment implements MainActivity.Fragment
 
     @Override
     public void onGattDataUpdate(String gattData) {
-        String[] bleData = gattData.split(" ");
 
-        // check the hex string
-        for(int i=0; i < 6; i++){
-            if(!isHexadecimal(bleData[i])){
-                return;
-            }
+        if(!TextUtils.isEmpty(gattData)) {
+            String[] bleData = gattData.split(" ");
+
+            // check the hex string
+//        for(int i=0; i < 6; i++){
+//            if(!isHexadecimal(bleData[i])){
+//                return;
+//            }
+//        }
+            // [3], [4], [5], = Accel x data
+            addEntryAccel(Integer.parseInt(bleData[0], 16), Integer.parseInt(bleData[1], 16), (int) Integer.parseInt(bleData[2], 16));
+            // [0], [1], [2], = Gyro x data
+            addEntryGyro(Integer.parseInt(bleData[3], 16), Integer.parseInt(bleData[4], 16), Integer.parseInt(bleData[5], 16));
+
+            gattDataView.setText(gattData);
         }
-        // [0], [1], [2], = Gyro x data
-        addEntryGyro((int) Long.parseLong(bleData[0], 16), (int) Long.parseLong(bleData[1], 16),(int) Long.parseLong(bleData[2], 16));
-        // [3], [4], [5], = Accel x data
-        addEntryAccel((int) Long.parseLong(bleData[3], 16), (int) Long.parseLong(bleData[4], 16),(int) Long.parseLong(bleData[5], 16));
-
-        gattDataView.setText(gattData);
 
     }
 

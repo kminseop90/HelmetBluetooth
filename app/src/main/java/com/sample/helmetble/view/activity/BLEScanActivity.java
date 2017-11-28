@@ -2,19 +2,12 @@ package com.sample.helmetble.view.activity;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothGattCharacteristic;
-import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothManager;
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -79,12 +72,14 @@ public class BLEScanActivity extends BaseActivity {
                 i.putExtra(MainActivity.EXTRAS_DEVICE_NAME, device.getName());
                 i.putExtra(MainActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
                 startActivity(i);
+                finish();
             }
         }));
 
         findViewById(R.id.temp_btn_moveID).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(v.getContext(), MainActivity.class));
+                finish();
             }
         });
         findViewById(R.id.temp_btn_scan).setOnClickListener(new View.OnClickListener() {
