@@ -1,6 +1,21 @@
 package com.sample.helmetble.model.vo;
 
 public class VODataFilter {
+
+    public interface FilterCallBack {
+        void sendDataBLE(int flag);
+
+        void sendMessage();
+    }
+
+    public void setFilterCallBack(FilterCallBack filterCallBack) {
+        this.callback = filterCallBack;
+    }
+
+    private FilterCallBack callback;
+    private int accelerationCount = 0;
+    private int gyroCount = 0;
+
     private int accelerationMaxX = -1;
     private int accelerationMinX = -1;
     private int accelerationMaxY = -1;
@@ -48,8 +63,7 @@ public class VODataFilter {
         }
     }
 
-    public boolean isFilter(String data) {
-        boolean isResult = false;
+    public void filter(String data) {
         String[] hexData = data.split(" ");
         int accelerationX  = Integer.parseInt(hexData[0], 16);
         int accelerationY  = Integer.parseInt(hexData[0], 16);
@@ -58,29 +72,35 @@ public class VODataFilter {
         int gyroY = Integer.parseInt(hexData[0], 16);
         int gyroZ = Integer.parseInt(hexData[0], 16);
 
-        if(!(accelerationMinX < accelerationX && accelerationX < accelerationMaxX)) {
-            isResult = true;
+        if((accelerationMinX <= accelerationX && accelerationX <= accelerationMaxX) && (accelerationMinY <= accelerationY && accelerationY <= accelerationMaxY) && (accelerationMinZ <= accelerationZ && accelerationZ <= accelerationMaxZ)) {
+            accelerationCountPlus();
+        } else {
+            accelerationCount = 0;
         }
 
-        if(!(accelerationMinY < accelerationY && accelerationY < accelerationMaxY)) {
-            isResult = true;
+        if((gyroMinX <= gyroX && gyroX <= gyroMaxX) && (gyroMinY <= gyroY && gyroY <= gyroMaxY) && (gyroMinZ  <= gyroZ && gyroZ <= gyroMaxZ)) {
+            gyroCountPlus();
+        } else {
+            gyroCount = 0;
         }
 
-        if(!(accelerationMinZ < accelerationZ && accelerationZ < accelerationMaxZ)) {
-            isResult = true;
-        }
+    }
 
-        if(!(gyroMinX < gyroX && gyroX < gyroMaxX)) {
-            isResult = true;
+    private void accelerationCountPlus() {
+        accelerationCount++;
+        if(accelerationCount == 10) {
+            accelerationCount = 0;
+            callback.sendMessage();
         }
+    }
 
-        if(!(gyroMinY < gyroY && gyroY < gyroMaxY)) {
-            isResult = true;
-        }
+    private void gyroCountPlus() {
+        gyroCount++;
+        if(gyroCount == 10) {
+            gyroCount = 0;
+            callback.sendDataBLE(0);
 
-        if(!(gyroMinZ  < gyroZ && gyroZ < gyroMaxZ)) {
-            isResult = true;
+
         }
-        return isResult;
     }
 }

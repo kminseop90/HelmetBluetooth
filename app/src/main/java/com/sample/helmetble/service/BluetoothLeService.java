@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.UUID;
 
@@ -72,19 +73,38 @@ public class BluetoothLeService extends Service {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-   }
+    }
 
-   public void setFilterData(VODataFilter filterData) {
-       this.filterData = filterData;
-   }
+    public void setFilterData(VODataFilter filterData) {
+        this.filterData = filterData;
+        this.filterData.setFilterCallBack(filterCallBack);
+    }
 
-   public void finishFileSave() {
-       try {
-           fos.close();
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
-   }
+    VODataFilter.FilterCallBack filterCallBack = new VODataFilter.FilterCallBack() {
+        @Override
+        public void sendDataBLE(int flag) {
+            List<BluetoothGattService> services = mBluetoothGatt.getServices();
+            List<BluetoothGattCharacteristic> characteristics = services.get(services.size() - 1).getCharacteristics();
+            String unixTimeString = Integer.toHexString(0); // 10번 조건에 맞을 시 0x00을 보냄
+            byte[] byteArray = new BigInteger(unixTimeString, 16).toByteArray();
+            characteristics.get(0).setValue(byteArray);
+            boolean status = writeCharacteristic(characteristics.get(0));
+            Log.d(TAG, "sendDataBLE: " + status);
+        }
+
+        @Override
+        public void sendMessage() {
+            // TODO 여기다가 메세지 보내는코드 넣어
+        }
+    };
+
+    public void finishFileSave() {
+        try {
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     // Implements callback methods for GATT events that the app cares about.  For example,
     // connection change and services discovered.
@@ -170,10 +190,11 @@ public class BluetoothLeService extends Service {
                 final StringBuilder stringBuilder = new StringBuilder(data.length);
                 for (byte byteChar : data)
                     stringBuilder.append(String.format("%02X ", byteChar));
-                if(!filterData.isFilter(stringBuilder.toString())) {
-                    intent.putExtra(EXTRA_DATA, new String(data) + "\n" + stringBuilder.toString());
-                    gattDataSave(stringBuilder.toString());
-                }
+
+                // 컨트롤러에서 받은 값을 기준으로 모듈에 데이터를 날려주거나 폰에 메세지를 송신하는 메소드를 호출한다
+                filterData.filter(stringBuilder.toString());
+                intent.putExtra(EXTRA_DATA, new String(data) + "\n" + stringBuilder.toString());
+                gattDataSave(stringBuilder.toString());
             }
         }
         sendBroadcast(intent);

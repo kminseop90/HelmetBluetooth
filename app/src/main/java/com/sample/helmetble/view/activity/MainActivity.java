@@ -37,7 +37,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
 
@@ -254,24 +253,6 @@ public class MainActivity extends BaseActivity {
         }
         mBluetoothLeService.finishFileSave();
 //        fileSave();
-    }
-
-    @OnClick(R.id.send_01)
-    public void send01Click() {
-        if (mGattCharacteristics != null) {
-            final BluetoothGattCharacteristic characteristic =
-                    mGattCharacteristics.get(3).get(0);
-            writeCharac(characteristic, 1);
-        }
-    }
-
-    @OnClick(R.id.send_02)
-    public void send02Click() {
-        if (mGattCharacteristics != null) {
-            final BluetoothGattCharacteristic characteristic =
-                    mGattCharacteristics.get(3).get(0);
-            writeCharac(characteristic, 2);
-        }
     }
 
     public void writeCharac(BluetoothGattCharacteristic charac, int value) {
