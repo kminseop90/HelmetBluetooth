@@ -17,6 +17,7 @@ import com.sample.helmetble.R;
 import com.sample.helmetble.base.BaseFragment;
 import com.sample.helmetble.view.activity.BLESettingActivity;
 import com.sample.helmetble.view.activity.MainActivity;
+import com.sample.helmetble.view.activity.MessageActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -100,6 +101,11 @@ public class SettingFragment extends BaseFragment implements MainActivity.Fragme
         i.putExtra(MainActivity.EXTRAS_DEVICE_ADDRESS, mAddress);
         i.putExtra(MainActivity.EXTRAS_DEVICE_NAME, mName);
         ((MainActivity)getContext()).startActivityForResult(i, 0);
+    }
+
+    @OnClick(R.id.setting_message_layout)
+    public void onMessageLayoutClick(View v) {
+        startActivity(new Intent(getContext(), MessageActivity.class));
     }
 
     @Override

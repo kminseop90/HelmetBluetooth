@@ -119,7 +119,7 @@
         android:background="@color/colorPrimary"
         android:gravity="center"
         android:letterSpacing="0.58"
-        android:text="저 장"
+        android:text="검 색"
         android:textColor="#ffffff"
         android:textSize="20sp"
         android:textStyle="bold" />
