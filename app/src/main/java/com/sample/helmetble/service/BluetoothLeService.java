@@ -23,6 +23,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -62,12 +64,16 @@ public class BluetoothLeService extends Service {
     private VODataFilter filterData;
 
     public void startFileSave() {
-        String dirPath = "sdcard";
+        String dirPath = "sdcard/BLEHelmet";
         File file = new File(dirPath);
         if (!file.exists()) {
             file.mkdir();
         }
-        File saveFile = new File(dirPath + "/GattData.txt");
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dataFormat = new SimpleDateFormat("yyyyMMdd_hhmmss");
+        String date = dataFormat.format(calendar.getTime());
+        File saveFile = new File(dirPath + String.format("/GattData_%s.txt", date));
         try {
             fos = new FileOutputStream(saveFile);
         } catch (FileNotFoundException e) {
@@ -82,10 +88,10 @@ public class BluetoothLeService extends Service {
 
     VODataFilter.FilterCallBack filterCallBack = new VODataFilter.FilterCallBack() {
         @Override
-        public void sendDataBLE(int flag) {
+        public void sendDataBLE(int flag) { // 10번 조건에 맞을 시 0x00을 보냄 flag 가 일단 0임
             List<BluetoothGattService> services = mBluetoothGatt.getServices();
             List<BluetoothGattCharacteristic> characteristics = services.get(services.size() - 1).getCharacteristics();
-            String unixTimeString = Integer.toHexString(0); // 10번 조건에 맞을 시 0x00을 보냄
+            String unixTimeString = Integer.toHexString(flag);
             byte[] byteArray = new BigInteger(unixTimeString, 16).toByteArray();
             characteristics.get(0).setValue(byteArray);
             boolean status = writeCharacteristic(characteristics.get(0));
@@ -207,6 +213,10 @@ public class BluetoothLeService extends Service {
 //            String unixTimeString = Integer.toHexString(unixTime);
 //            byte[] byteArray = new BigInteger(unixTimeString, 16).toByteArray();
             try {
+                Calendar calendar = Calendar.getInstance();
+                SimpleDateFormat dataFormat = new SimpleDateFormat("hh:mm:ss");
+                String date = dataFormat.format(calendar.getTime()) + " - ";
+                data = date + data;
                 data += "\n";
                 fos.write(data.getBytes());
             } catch (IOException e) {
