@@ -16,6 +16,10 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,6 +35,7 @@ public class BluetoothLeService extends Service {
     private String mBluetoothDeviceAddress;
     private BluetoothGatt mBluetoothGatt;
     private int mConnectionState = STATE_DISCONNECTED;
+    private StringBuffer gattDataBuffer = new StringBuffer();
 
     private static final int STATE_DISCONNECTED = 0;
     private static final int STATE_CONNECTING = 1;
@@ -49,6 +54,30 @@ public class BluetoothLeService extends Service {
 
     public final static UUID UUID_HEART_RATE_MEASUREMENT =
             UUID.fromString(SampleGattAttributes.HEART_RATE_MEASUREMENT);
+
+    private FileOutputStream fos;
+
+    public void startFileSave() {
+        String dirPath = "sdcard";
+        File file = new File(dirPath);
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        File saveFile = new File(dirPath + "/GattData.txt");
+        try {
+            fos = new FileOutputStream(saveFile);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+   }
+
+   public void finishFileSave() {
+       try {
+           fos.close();
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
+   }
 
     // Implements callback methods for GATT events that the app cares about.  For example,
     // connection change and services discovered.
@@ -135,10 +164,29 @@ public class BluetoothLeService extends Service {
                 for (byte byteChar : data)
                     stringBuilder.append(String.format("%02X ", byteChar));
                 intent.putExtra(EXTRA_DATA, new String(data) + "\n" + stringBuilder.toString());
+                gattDataSave(stringBuilder.toString());
             }
         }
         sendBroadcast(intent);
     }
+
+    public void gattDataSave(String data) {
+        if (data != null) {
+//            SimpleDateFormat format = new SimpleDateFormat();
+//            gattDataBuffer.append(format.format(System.currentTimeMillis()) + "_");
+//            String unixTimeString = Integer.toHexString(unixTime);
+//            byte[] byteArray = new BigInteger(unixTimeString, 16).toByteArray();
+            try {
+                data += "\n";
+                fos.write(data.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+//            gattDataBuffer.append(code[1]);
+//            gattDataBuffer.append("\n");
+        }
+    }
+
 
     public class LocalBinder extends Binder {
         public BluetoothLeService getService() {

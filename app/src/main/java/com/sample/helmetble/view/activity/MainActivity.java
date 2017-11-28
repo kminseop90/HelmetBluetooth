@@ -215,6 +215,7 @@ public class MainActivity extends BaseActivity {
     };
 
     public void send() {
+        mBluetoothLeService.startFileSave();
         if (mGattCharacteristics != null) {
             final BluetoothGattCharacteristic characteristic =
                     mGattCharacteristics.get(3).get(1);
@@ -244,7 +245,8 @@ public class MainActivity extends BaseActivity {
             mNotifyCharacteristic = null;
             mBluetoothLeService.readCharacteristic(characteristic);
         }
-        fileSave();
+        mBluetoothLeService.finishFileSave();
+//        fileSave();
     }
 
     @OnClick(R.id.send_01)
