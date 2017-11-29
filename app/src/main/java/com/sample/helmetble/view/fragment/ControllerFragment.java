@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sample.helmetble.R;
 import com.sample.helmetble.base.BaseFragment;
@@ -71,9 +72,11 @@ public class ControllerFragment extends BaseFragment implements MainActivity.Fra
         return v;
     }
 
+
+
     @OnClick(R.id.btn_start)
     public void onStartClick(View v) {
-        if(!((MainActivity)getContext()).isDataConnection()) {
+        if(!((MainActivity)getContext()).isDataConnection() && ((MainActivity)getContext()).isConnected()) {
             int accelerationMaxX = Integer.parseInt(maxAccelX.getText().toString());
             int accelerationMinX = Integer.parseInt(minAccelX.getText().toString());
             int accelerationMaxY = Integer.parseInt(maxAccelY.getText().toString());
@@ -91,6 +94,9 @@ public class ControllerFragment extends BaseFragment implements MainActivity.Fra
                     gyroMaxX, gyroMinX, gyroMaxY, gyroMinY, gyroMaxZ, gyroMinZ);
             ((MainActivity) getContext()).setDataConnection(true);
             ((MainActivity) getContext()).send(filterData);
+        }
+        else{
+            Toast.makeText(getContext(), "블루투스 디바이스에 연결되지 않았습니다.!", Toast.LENGTH_SHORT).show();
         }
     }
 

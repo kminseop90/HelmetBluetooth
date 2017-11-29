@@ -4,12 +4,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.telephony.SmsManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +22,10 @@ import com.sample.helmetble.view.activity.MessageActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class SettingFragment extends BaseFragment implements MainActivity.FragmentDataPath{
 
@@ -36,6 +40,8 @@ public class SettingFragment extends BaseFragment implements MainActivity.Fragme
     @BindView(R.id.setting_text_battery_remain)
     TextView batteryView;
 
+    @BindView(R.id.setting_msg_switch)
+    Switch switch_message_send;
 
     @BindView(R.id.setting_btn_save)
     Button btn_save;
@@ -45,8 +51,10 @@ public class SettingFragment extends BaseFragment implements MainActivity.Fragme
 
     private final String KEY_ID_PREFERENCE = "user_id";
     private final String KEY_PHONE_PREFERENCE = "user_phone";
+    private final String KEY_SEND_MESSAGE = "is_send_msg";
 
     private String user_phone_number="";
+    private boolean is_send_message = true;
 
     @Nullable
     @Override
@@ -54,6 +62,7 @@ public class SettingFragment extends BaseFragment implements MainActivity.Fragme
         SharedPreferences prefs = getActivity().getSharedPreferences("PrefName", getActivity().MODE_PRIVATE);
         String userID = prefs.getString(KEY_ID_PREFERENCE, "");
         user_phone_number = prefs.getString(KEY_PHONE_PREFERENCE, "");
+        is_send_message = prefs.getBoolean(KEY_SEND_MESSAGE, true);
 
         View v = inflater.inflate(R.layout.fragment_setting, container, false);
         ButterKnife.bind(this, v);
@@ -67,33 +76,37 @@ public class SettingFragment extends BaseFragment implements MainActivity.Fragme
             mName = getArguments().getString(MainActivity.EXTRAS_DEVICE_NAME);
         }
 
-        btn_save.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                sendSMSMessage();
-            }
-        });
+        switch_message_send.setChecked(is_send_message);
+
 
         return v;
-
     }
 
-
-    protected void sendSMSMessage() {
-
-        try {
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(user_phone_number, null, "Test SMS Sent", null, null);
-            Toast.makeText(getContext().getApplicationContext(), "SMS sent.", Toast.LENGTH_LONG).show();
+    @OnCheckedChanged(R.id.setting_msg_switch)
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        // do something, the isChecked will be
+        // true if the switch is in the On position
+        if(isChecked){
+            is_send_message = isChecked;
+            Toast.makeText(getContext().getApplicationContext(), "메시지가 활성화 되었습니다", Toast.LENGTH_SHORT).show();
         }
-
-        catch (Exception e) {
-            Toast.makeText(getContext().getApplicationContext(), "SMS faild, please try again.", Toast.LENGTH_LONG).show();
-            e.printStackTrace();
+        else{
+            is_send_message = isChecked;
+            Toast.makeText(getContext().getApplicationContext(), "메시지가 비활성화 되었습니다", Toast.LENGTH_SHORT).show();
         }
-//        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + user_phone_number));
-//        intent.putExtra("sms_body", "Hello Hi");
-//        startActivity(intent);
     }
+
+    @OnClick(R.id.setting_btn_save)
+    public void onSaveBtnClick(View v) {
+
+        SharedPreferences prefs = getActivity().getSharedPreferences("PrefName", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean(KEY_SEND_MESSAGE, is_send_message);
+
+        Toast.makeText(getContext(), "해당 설정이 저장되었습니다!", Toast.LENGTH_LONG).show();
+        editor.commit();
+    }
+
 
     @OnClick(R.id.setting_bluetooth_layout)
     public void onBluetoothLayoutClick(View v) {

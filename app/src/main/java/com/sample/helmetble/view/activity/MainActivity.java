@@ -356,6 +356,10 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    public boolean isConnected(){
+        return isConnected;
+    }
+
     public boolean isDataConnection() {
         return isDataConnection;
     }
