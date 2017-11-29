@@ -21,8 +21,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_vertical"
-                android:letterSpacing="0.05"
                 android:layout_marginTop="34.7dp"
+                android:letterSpacing="0.05"
                 android:text="컨트롤러"
                 android:textColor="#ffffff"
                 android:textSize="18.3sp"
@@ -119,21 +119,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_x="108px"
-                android:layout_y="87px"
-                >
-                <View android:id="@+id/ctr_view_1"
-                    android:background="#ffffff"
-                    android:layout_width = "fill_parent"
+                android:layout_y="87px">
+
+                <View
+                    android:id="@+id/ctr_view_1"
+                    android:layout_width="fill_parent"
                     android:layout_height="1dip"
-                    android:layout_centerVertical ="true"
-                    android:layout_alignParentTop="true"/>
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:background="#ffffff" />
+
                 <ImageView
                     android:id="@+id/ctr_img_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/ctr_view_1"
                     android:layout_alignParentRight="true"
-                    />
+                    android:layout_below="@id/ctr_view_1" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -148,40 +149,41 @@
                     android:layout_alignParentBottom="true"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="44.3dp"
-                    android:text="X"
                     android:gravity="center"
+                    android:text="X"
                     android:textColor="#ff7272"
                     android:textSize="18.3sp"
                     android:textStyle="bold" />
 
                 <EditText
-                    android:text="0"
                     android:id="@+id/input_gyroX_x"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentBottom="true"
-                    android:maxLength="3"
                     android:layout_alignTop="@+id/textViewX"
-                    android:gravity="center"
                     android:layout_marginLeft="120dp"
-                    android:hint="100"
+                    android:gravity="center"
+                    android:hint="0"
                     android:inputType="numberDecimal"
+                    android:maxLength="3"
                     android:selectAllOnFocus="false"
+                    android:text="0"
                     android:textColor="#4f4f4f" />
 
 
                 <EditText
-                    android:text="100"
                     android:id="@+id/input_gyroX_y"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentTop="true"
-                    android:maxLength="3"
-                    android:layout_marginLeft="262dp"
-                    android:hint="100"
-                    android:inputType="numberDecimal"
+                    android:layout_marginLeft="240dp"
                     android:gravity="center"
+                    android:hint="255"
+                    android:inputType="numberDecimal"
+                    android:maxLength="3"
+                    android:singleLine="true"
+                    android:text="255"
                     android:textColor="#4f4f4f"
                     android:textSize="18.3sp" />
             </RelativeLayout>
@@ -191,21 +193,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_x="108px"
-                android:layout_y="87px"
-                >
-                <View android:id="@+id/ctr_view_2"
-                    android:background="#ffffff"
-                    android:layout_width = "fill_parent"
+                android:layout_y="87px">
+
+                <View
+                    android:id="@+id/ctr_view_2"
+                    android:layout_width="fill_parent"
                     android:layout_height="1dip"
-                    android:layout_centerVertical ="true"
-                    android:layout_alignParentTop="true"/>
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:background="#ffffff" />
+
                 <ImageView
                     android:id="@+id/ctr_img_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/ctr_view_2"
                     android:layout_alignParentRight="true"
-                    />
+                    android:layout_below="@id/ctr_view_2" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -228,35 +231,36 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:text="0"
                     android:id="@+id/input_gyroY_x"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentBottom="true"
                     android:layout_alignTop="@+id/textView"
-                    android:maxLength="3"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="120dp"
-                    android:hint="100"
+                    android:gravity="center"
+                    android:hint="0"
                     android:inputType="numberDecimal"
+                    android:maxLength="3"
                     android:selectAllOnFocus="false"
                     android:singleLine="true"
+                    android:text="0"
                     android:textColor="#4f4f4f" />
 
 
                 <EditText
-                    android:text="100"
                     android:id="@+id/input_gyroY_y"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentBottom="true"
-                    android:maxLength="3"
                     android:layout_alignParentTop="true"
-                    android:layout_marginLeft="262dp"
-                    android:hint="100"
+                    android:layout_marginLeft="240dp"
+                    android:gravity="center"
+                    android:hint="255"
                     android:inputType="numberDecimal"
+                    android:maxLength="3"
                     android:singleLine="true"
-                    android:textAlignment="viewStart"
+                    android:text="255"
                     android:textColor="#4f4f4f"
                     android:textSize="18.3sp" />
             </RelativeLayout>
@@ -266,21 +270,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_x="108px"
-                android:layout_y="87px"
-                >
-                <View android:id="@+id/ctr_view_3"
-                    android:background="#ffffff"
-                    android:layout_width = "fill_parent"
+                android:layout_y="87px">
+
+                <View
+                    android:id="@+id/ctr_view_3"
+                    android:layout_width="fill_parent"
                     android:layout_height="1dip"
-                    android:layout_centerVertical ="true"
-                    android:layout_alignParentTop="true"/>
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:background="#ffffff" />
+
                 <ImageView
                     android:id="@+id/ctr_img_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/ctr_view_3"
                     android:layout_alignParentRight="true"
-                    />
+                    android:layout_below="@id/ctr_view_3" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -302,55 +307,58 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:text="0"
                     android:id="@+id/input_gyroZ_x"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentBottom="true"
                     android:layout_gravity="center_vertical"
-                    android:maxLength="3"
                     android:layout_marginLeft="120dp"
-                    android:hint="100"
+                    android:gravity="center"
+                    android:hint="0"
                     android:inputType="numberDecimal"
+                    android:maxLength="3"
                     android:selectAllOnFocus="false"
+                    android:text="0"
                     android:textColor="#4f4f4f" />
 
 
                 <EditText
-                    android:text="100"
                     android:id="@+id/input_gyroZ_y"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentTop="true"
-                    android:maxLength="3"
-                    android:layout_marginLeft="262dp"
-                    android:hint="100"
+                    android:layout_marginLeft="240dp"
+                    android:gravity="center"
+                    android:hint="255"
                     android:inputType="numberDecimal"
-                    android:textAlignment="viewStart"
+                    android:maxLength="3"
+                    android:text="255"
                     android:textColor="#4f4f4f"
                     android:textSize="18.3sp" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/ctr_line_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_x="108px"
-                android:layout_y="87px"
-                >
-                <View android:id="@+id/ctr_view_4"
-                    android:background="#ffffff"
-                    android:layout_width = "fill_parent"
+                android:layout_y="87px">
+
+                <View
+                    android:id="@+id/ctr_view_4"
+                    android:layout_width="fill_parent"
                     android:layout_height="1dip"
-                    android:layout_centerVertical ="true"
-                    android:layout_alignParentTop="true"/>
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:background="#ffffff" />
+
                 <ImageView
                     android:id="@+id/ctr_img_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/ctr_view_4"
                     android:layout_alignParentRight="true"
-                    />
+                    android:layout_below="@id/ctr_view_4" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -394,21 +402,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_x="108px"
-                android:layout_y="87px"
-                >
-                <View android:id="@+id/ctr_view_5"
-                    android:background="#ffffff"
-                    android:layout_width = "fill_parent"
+                android:layout_y="87px">
+
+                <View
+                    android:id="@+id/ctr_view_5"
+                    android:layout_width="fill_parent"
                     android:layout_height="1dip"
-                    android:layout_centerVertical ="true"
-                    android:layout_alignParentTop="true"/>
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:background="#ffffff" />
+
                 <ImageView
                     android:id="@+id/ctr_img_5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/ctr_view_5"
                     android:layout_alignParentRight="true"
-                    />
+                    android:layout_below="@id/ctr_view_5" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -430,57 +439,60 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:text="0"
                     android:id="@+id/input_accelX_x"
-                    android:layout_width="wrap_content"
-                    android:maxLength="3"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentBottom="true"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="120dp"
-                    android:hint="100"
+                    android:gravity="center"
+                    android:hint="0"
                     android:inputType="numberDecimal"
+                    android:maxLength="3"
                     android:selectAllOnFocus="false"
                     android:singleLine="true"
+                    android:text="0"
                     android:textColor="#4f4f4f" />
 
 
                 <EditText
-                    android:text="100"
                     android:id="@+id/input_accelX_y"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentBottom="true"
-                    android:maxLength="3"
                     android:layout_alignParentTop="true"
-                    android:layout_marginLeft="262dp"
-                    android:hint="100"
+                    android:layout_marginLeft="240dp"
+                    android:gravity="center"
+                    android:hint="255"
                     android:inputType="numberDecimal"
+                    android:maxLength="3"
                     android:singleLine="true"
-                    android:textAlignment="viewStart"
+                    android:text="255"
                     android:textColor="#4f4f4f"
                     android:textSize="18.3sp" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/ctr_line_6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_x="108px"
-                android:layout_y="87px"
-                >
-                <View android:id="@+id/ctr_view_6"
-                    android:background="#ffffff"
-                    android:layout_width = "fill_parent"
+                android:layout_y="87px">
+
+                <View
+                    android:id="@+id/ctr_view_6"
+                    android:layout_width="fill_parent"
                     android:layout_height="1dip"
-                    android:layout_centerVertical ="true"
-                    android:layout_alignParentTop="true"/>
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:background="#ffffff" />
+
                 <ImageView
                     android:id="@+id/ctr_img_6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/ctr_view_6"
                     android:layout_alignParentRight="true"
-                    />
+                    android:layout_below="@id/ctr_view_6" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -501,34 +513,35 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:text="0"
                     android:id="@+id/input_accelY_x"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:maxLength="3"
                     android:layout_alignParentBottom="true"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="120dp"
-                    android:hint="100"
+                    android:gravity="center"
+                    android:hint="0"
                     android:inputType="numberDecimal"
+                    android:maxLength="3"
                     android:selectAllOnFocus="false"
                     android:singleLine="true"
+                    android:text="0"
                     android:textColor="#4f4f4f" />
 
 
                 <EditText
-                    android:text="100"
                     android:id="@+id/input_accelY_y"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentBottom="true"
-                    android:maxLength="3"
                     android:layout_alignParentTop="true"
-                    android:layout_marginLeft="262dp"
-                    android:hint="100"
+                    android:layout_marginLeft="240dp"
+                    android:gravity="center"
+                    android:hint="255"
                     android:inputType="numberDecimal"
+                    android:maxLength="3"
                     android:singleLine="true"
-                    android:textAlignment="viewStart"
+                    android:text="255"
                     android:textColor="#4f4f4f"
                     android:textSize="18.3sp" />
             </RelativeLayout>
@@ -551,34 +564,35 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:text="0"
                     android:id="@+id/input_accelZ_x"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentBottom="true"
-                    android:maxLength="3"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="120dp"
-                    android:hint="100"
+                    android:gravity="center"
+                    android:hint="0"
                     android:inputType="numberDecimal"
+                    android:maxLength="3"
                     android:selectAllOnFocus="false"
                     android:singleLine="true"
+                    android:text="0"
                     android:textColor="#4f4f4f" />
 
 
                 <EditText
-                    android:text="100"
                     android:id="@+id/input_accelZ_y"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginLeft="262dp"
-                    android:hint="100"
-                    android:maxLength="3"
+                    android:layout_marginLeft="240dp"
+                    android:gravity="center"
+                    android:hint="255"
                     android:inputType="numberDecimal"
+                    android:maxLength="3"
                     android:singleLine="true"
-                    android:textAlignment="viewStart"
+                    android:text="255"
                     android:textColor="#4f4f4f"
                     android:textSize="18.3sp" />
             </RelativeLayout>
@@ -587,33 +601,30 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_start"
                     android:layout_width="wrap_content"
                     android:layout_height="46.7dp"
-                    android:layout_weight="0.5"
-                    android:text="시 작"
-                    android:background="#85a0b8"
-                    android:textColor="#ffffff"
-                    android:textSize="18.7sp"
                     android:layout_margin="10dp"
-                    />
+                    android:layout_weight="0.5"
+                    android:background="#85a0b8"
+                    android:text="시 작"
+                    android:textColor="#ffffff"
+                    android:textSize="18.7sp" />
 
                 <Button
                     android:id="@+id/btn_end"
-                    android:layout_toRightOf="@id/btn_start"
                     android:layout_width="wrap_content"
                     android:layout_height="46.7dp"
-                    android:layout_weight="0.5"
-                    android:text="종 료"
-                    android:background="#85a0b8"
-                    android:textColor="#ffffff"
-                    android:textSize="18.7sp"
                     android:layout_margin="10dp"
-                    />
+                    android:layout_toRightOf="@id/btn_start"
+                    android:layout_weight="0.5"
+                    android:background="#85a0b8"
+                    android:text="종 료"
+                    android:textColor="#ffffff"
+                    android:textSize="18.7sp" />
             </LinearLayout>
         </LinearLayout>
 

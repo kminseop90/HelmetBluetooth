@@ -39,7 +39,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.1'
     provided 'javax.annotation:jsr250-api:1.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta5'
-    compile 'gun0912.ted:tedpermission:2.1.0'
+    compile 'gun0912.ted:tedpermission:2.0.0'
 
     compile 'com.android.support:support-v4:25.2.0'
     compile 'com.android.support:recyclerview-v7:25.2.0'

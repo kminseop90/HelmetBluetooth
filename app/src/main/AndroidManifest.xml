@@ -30,11 +30,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.sample.helmetble.view.activity.UserInfoActivity" />
+        <activity android:name=".view.activity.UserInfoActivity" />
         <activity android:name=".view.activity.BLEScanActivity" />
-        <activity android:name="com.sample.helmetble.view.activity.MainActivity"></activity>
-        <activity android:name="com.sample.helmetble.view.activity.BLESettingActivity"></activity>
-        <activity android:name="com.sample.helmetble.view.activity.MessageActivity"></activity>
+        <activity android:name=".view.activity.MainActivity"/>
+        <activity android:name=".view.activity.BLESettingActivity"/>
+        <activity android:name=".view.activity.MessageActivity"/>
 
 
         <service
