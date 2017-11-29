@@ -1,20 +1,16 @@
 package com.sample.helmetble.view.activity;
 
-import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.content.SharedPreferences;
 
-import com.gun0912.tedpermission.PermissionListener;
-import com.gun0912.tedpermission.TedPermission;
 import com.sample.helmetble.R;
 import com.sample.helmetble.base.BaseActivity;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,6 +38,7 @@ public class UserInfoActivity extends BaseActivity {
         SharedPreferences prefs = getSharedPreferences("PrefName", MODE_PRIVATE);
         String userID = prefs.getString(KEY_ID_PREFERENCE, "");
         String userPhone = prefs.getString(KEY_PHONE_PREFERENCE, "");
+        phoneInput.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
         if(userID == null || userID.isEmpty()){
             return;
