@@ -94,7 +94,7 @@ public class ControllerFragment extends BaseFragment implements MainActivity.Fra
                     gyroMaxX, gyroMinX, gyroMaxY, gyroMinY, gyroMaxZ, gyroMinZ);
             ((MainActivity) getContext()).setDataConnection(true);
             ((MainActivity) getContext()).send(filterData);
-        }
+    }
         else{
             Toast.makeText(getContext(), "블루투스 디바이스에 연결되지 않았습니다.!", Toast.LENGTH_SHORT).show();
         }
