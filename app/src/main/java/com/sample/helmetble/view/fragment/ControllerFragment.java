@@ -96,7 +96,7 @@ public class ControllerFragment extends BaseFragment implements MainActivity.Fra
             ((MainActivity) getContext()).send(filterData);
     }
         else{
-            Toast.makeText(getContext(), "블루투스 디바이스에 연결되지 않았습니다.!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "블루투스 디바이스에 연결되지 않았습니다!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -105,6 +105,8 @@ public class ControllerFragment extends BaseFragment implements MainActivity.Fra
         if(((MainActivity)getContext()).isDataConnection()) {
             ((MainActivity) getContext()).setDataConnection(false);
             ((MainActivity) getContext()).notiEnd();
+
+            Toast.makeText(getContext(), "측정이 종료 되었습니다.", Toast.LENGTH_SHORT).show();
         }
     }
 

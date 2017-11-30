@@ -25,6 +25,7 @@
         android:id="@+id/message_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="number"
         android:layout_gravity="center"
         android:layout_marginLeft="13dp"
         android:text="010-0000-0000"

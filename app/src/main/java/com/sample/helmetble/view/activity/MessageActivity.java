@@ -6,9 +6,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.view.inputmethod.InputMethodSubtype;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.sample.helmetble.R;
@@ -18,10 +25,12 @@ import com.sample.helmetble.base.BaseActivity;
 import com.sample.helmetble.model.vo.Phone;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnTextChanged;
 
 
 public class MessageActivity extends BaseActivity {
@@ -36,6 +45,8 @@ public class MessageActivity extends BaseActivity {
     private int MAX_NUM_PHONE = 3;
 
     private String[] user_arr_phone = new String[MAX_NUM_PHONE];
+    private ArrayList<Phone> phones = null;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,22 +63,22 @@ public class MessageActivity extends BaseActivity {
                 if (e.getAction() == MotionEvent.ACTION_DOWN) {
                     View reV = rv.findChildViewUnder(e.getX(), e.getY());
                     int position = rv.getChildAdapterPosition(reV);
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
-                    Toast.makeText(getApplicationContext(), "hi : " + position, Toast.LENGTH_SHORT).show();
+
+                    switch (position){
+                        case 0:
+                            break;
+                        case 1:
+                            break;
+                    }
+
                 }
                 return false; //TouchEvent를 가로채지 않는다.
             }
 
             @Override
-            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-                // onInterceptTouchEvent의 반환 값이 true일 경우 TouchEvent를 가로채어 동작한다.
-            }
-
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {}
             @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-                // Item이 상위 RecyclerView가 TouchEvent를 가로채길 원치 않을 때 호출된다.
-            }
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {}
         });
 
     }
@@ -77,13 +88,15 @@ public class MessageActivity extends BaseActivity {
         messageList.setAdapter(phoneAdapter);
         messageList.addItemDecoration(new ItemDecorator());
         messageList.setLayoutManager(new LinearLayoutManager(this));
-        ArrayList<Phone> phones = new ArrayList<>();
+        phones = new ArrayList<>();
+
         for(int i = 0 ; i < MAX_NUM_PHONE ; i++ ) {
             Phone phone = new Phone();
             phone.setName("User " + i);
             phone.setPhoneNumber(" " + user_arr_phone[i]);
             phones.add(phone);
         }
+
         phoneAdapter.addAll(phones);
     }
 

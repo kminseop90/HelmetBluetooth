@@ -28,17 +28,11 @@ public class GraphFragment extends BaseFragment implements MainActivity.Fragment
     public static LineChart obj_line_gyro = null;
     public static LineChart obj_line_accel = null;
 
-    @BindView(R.id.temp_gatt_data_tv)
-    TextView gattDataView;
     @BindView(R.id.chart_gyro)
     LineChart mGyroChart;
     @BindView(R.id.chart_accel)
     LineChart mAccelChart;
 
-    @BindView(R.id.temp_btn_add)
-    Button btnTmp;
-    @BindView(R.id.temp_btn_add2)
-    Button btnTmp2;
 
     boolean isConnected;
 
@@ -78,21 +72,6 @@ public class GraphFragment extends BaseFragment implements MainActivity.Fragment
             mAccelChart.setVisibleXRangeMaximum(6);
         }
 
-        btnTmp.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                for(int i=0; i < 15; i++){
-                    addEntryGyro(i,i,i);
-                }
-            }
-        });
-        btnTmp2.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-
-                for(int i=0; i < 200; i++){
-                    addEntryAccel(i, i+50, i*2);
-                }
-            }
-        });
         return v;
     }
 
@@ -197,7 +176,7 @@ public class GraphFragment extends BaseFragment implements MainActivity.Fragment
             // [0], [1], [2], = Gyro x data
             addEntryGyro(Integer.parseInt(bleData[3], 16), Integer.parseInt(bleData[4], 16), Integer.parseInt(bleData[5], 16));
 
-            gattDataView.setText(gattData);
+//            gattDataView.setText(gattData);
         }
 
     }

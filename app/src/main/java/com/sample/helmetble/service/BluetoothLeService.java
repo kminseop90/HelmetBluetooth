@@ -101,18 +101,29 @@ public class BluetoothLeService extends Service {
         }
 
         @Override
-        public void sendMessage() {
+        public void sendMessage(int x, int y, int z) {
             String KEY_SENDMESSAGE = "is_send_msg";
             String KEY_PHONE_PREFERENCE = "user_phone";
+            String KEY_PHONE_PREFERENCE_SUB_1 = "user_phone_sub_1";
+            String KEY_PHONE_PREFERENCE_SUB_2 = "user_phone_sub_2";
+            String str_Result = "Accel X :" + x + "Accel Y : " + y + "Accel Z" + z;
 
             SharedPreferences prefs = getApplicationContext().getSharedPreferences("PrefName", getApplicationContext().MODE_PRIVATE);
             boolean isSendMsg = prefs.getBoolean(KEY_SENDMESSAGE, true);
             String userPhone = prefs.getString(KEY_PHONE_PREFERENCE, "");
+            String userSubPhone1 = prefs.getString(KEY_PHONE_PREFERENCE_SUB_1, "");
+            String userSubPhone2 = prefs.getString(KEY_PHONE_PREFERENCE_SUB_2, "");
 
-            if (isSendMsg) {
+            if (isSendMsg && !userPhone.isEmpty()) {
                 try {
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(userPhone, null, "Test SMS Sent", null, null);
+                    smsManager.sendTextMessage(userPhone, null, "SMS Sent\n" + str_Result, null, null);
+                    if(!userSubPhone1.isEmpty()){
+                        smsManager.sendTextMessage(userSubPhone1, null, userPhone+" is Sent!\n" + str_Result, null, null);
+                    }
+                    if(!userSubPhone2.isEmpty()){
+                        smsManager.sendTextMessage(userSubPhone2, null, userPhone+" is Sent!\n" + str_Result, null, null);
+                    }
                     Log.d(TAG, "sendMessage: " + isSendMsg);
                 } catch (Exception e) {
                     Log.d(TAG, "sendMessage: " + isSendMsg);

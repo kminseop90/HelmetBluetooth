@@ -5,7 +5,7 @@ public class VODataFilter {
     public interface FilterCallBack {
         void sendDataBLE(int flag);
 
-        void sendMessage();
+        void sendMessage(int x, int y, int z);
     }
 
     public void setFilterCallBack(FilterCallBack filterCallBack) {
@@ -73,7 +73,7 @@ public class VODataFilter {
         int gyroZ = Integer.parseInt(hexData[0], 16);
 
         if((accelerationMinX <= accelerationX && accelerationX <= accelerationMaxX) && (accelerationMinY <= accelerationY && accelerationY <= accelerationMaxY) && (accelerationMinZ <= accelerationZ && accelerationZ <= accelerationMaxZ)) {
-            accelerationCountPlus();
+            accelerationCountPlus(accelerationX, accelerationY, accelerationZ);
         } else {
             accelerationCount = 0;
         }
@@ -86,11 +86,11 @@ public class VODataFilter {
 
     }
 
-    private void accelerationCountPlus() {
+    private void accelerationCountPlus(int x, int y , int z) {
         accelerationCount++;
         if(accelerationCount == 10) {
             accelerationCount = 0;
-            callback.sendMessage();
+            callback.sendMessage(x, y, z);
         }
     }
 
