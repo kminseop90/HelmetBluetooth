@@ -1,5 +1,6 @@
 package com.sample.helmetble.service;
 
+import android.Manifest;
 import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -13,8 +14,12 @@ import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Binder;
 import android.os.IBinder;
+import android.support.v4.app.ActivityCompat;
 import android.telephony.SmsManager;
 import android.util.Log;
 
@@ -106,7 +111,6 @@ public class BluetoothLeService extends Service {
             String KEY_PHONE_PREFERENCE = "user_phone";
             String KEY_PHONE_PREFERENCE_SUB_1 = "user_phone_sub_1";
             String KEY_PHONE_PREFERENCE_SUB_2 = "user_phone_sub_2";
-            String str_Result = "Accel X :" + x + "Accel Y : " + y + "Accel Z" + z;
 
             SharedPreferences prefs = getApplicationContext().getSharedPreferences("PrefName", getApplicationContext().MODE_PRIVATE);
             boolean isSendMsg = prefs.getBoolean(KEY_SENDMESSAGE, true);
@@ -114,15 +118,19 @@ public class BluetoothLeService extends Service {
             String userSubPhone1 = prefs.getString(KEY_PHONE_PREFERENCE_SUB_1, "");
             String userSubPhone2 = prefs.getString(KEY_PHONE_PREFERENCE_SUB_2, "");
 
+
+            String str_Result = "Accel X : " + x + " Accel Y : " + y + " Accel Z : " + z;
+            str_Result += "\n" + getLocation();
+
             if (isSendMsg && !userPhone.isEmpty()) {
                 try {
                     SmsManager smsManager = SmsManager.getDefault();
                     smsManager.sendTextMessage(userPhone, null, "SMS Sent\n" + str_Result, null, null);
-                    if(!userSubPhone1.isEmpty()){
-                        smsManager.sendTextMessage(userSubPhone1, null, userPhone+" is Sent!\n" + str_Result, null, null);
+                    if (!userSubPhone1.isEmpty()) {
+                        smsManager.sendTextMessage(userSubPhone1, null, userPhone + " is Sent!\n" + str_Result, null, null);
                     }
-                    if(!userSubPhone2.isEmpty()){
-                        smsManager.sendTextMessage(userSubPhone2, null, userPhone+" is Sent!\n" + str_Result, null, null);
+                    if (!userSubPhone2.isEmpty()) {
+                        smsManager.sendTextMessage(userSubPhone2, null, userPhone + " is Sent!\n" + str_Result, null, null);
                     }
                     Log.d(TAG, "sendMessage: " + isSendMsg);
                 } catch (Exception e) {
@@ -132,6 +140,7 @@ public class BluetoothLeService extends Service {
             }
         }
     };
+
 
     public void finishFileSave() {
         try {
@@ -235,6 +244,27 @@ public class BluetoothLeService extends Service {
         sendBroadcast(intent);
     }
 
+    public String getLocation(){
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return"";
+        }
+        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+        double longitude = location.getLongitude();
+        double latitude = location.getLatitude();
+
+        String strLoc = String.valueOf(latitude) + " " + String.valueOf(longitude) + " ";
+        return strLoc;
+    }
+
     public void gattDataSave(String data) {
         if (data != null) {
 //            SimpleDateFormat format = new SimpleDateFormat();
@@ -245,7 +275,8 @@ public class BluetoothLeService extends Service {
                 Calendar calendar = Calendar.getInstance();
                 SimpleDateFormat dataFormat = new SimpleDateFormat("hh:mm:ss");
                 String date = dataFormat.format(calendar.getTime()) + " - ";
-                data = date + data;
+
+                data = date + getLocation()+ data;
                 data += "\n";
                 fos.write(data.getBytes());
             } catch (IOException e) {

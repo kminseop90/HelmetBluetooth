@@ -55,12 +55,6 @@
         android:layout_below="@id/device_list_text"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/temp_btn_moveID"
-            android:layout_width="150dp"
-            android:layout_weight="0.5"
-            android:layout_height="50dp"
-            android:text="메인 이동 버튼" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

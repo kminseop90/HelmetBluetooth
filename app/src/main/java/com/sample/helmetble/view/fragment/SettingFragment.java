@@ -82,17 +82,18 @@ public class SettingFragment extends BaseFragment implements MainActivity.Fragme
         return v;
     }
 
+
     @OnCheckedChanged(R.id.setting_msg_switch)
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         // do something, the isChecked will be
         // true if the switch is in the On position
         if(isChecked){
             is_send_message = isChecked;
-            Toast.makeText(getContext().getApplicationContext(), "메시지가 활성화 되었습니다", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext().getApplicationContext(), "메시지가 활성화 되었습니다", Toast.LENGTH_SHORT).show();
         }
         else{
             is_send_message = isChecked;
-            Toast.makeText(getContext().getApplicationContext(), "메시지가 비활성화 되었습니다", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext().getApplicationContext(), "메시지가 비활성화 되었습니다", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -132,6 +133,10 @@ public class SettingFragment extends BaseFragment implements MainActivity.Fragme
     @Override
     public void onResume() {
         super.onResume();
+
+        SharedPreferences prefs = getActivity().getSharedPreferences("PrefName", getActivity().MODE_PRIVATE);
+        is_send_message = prefs.getBoolean(KEY_SEND_MESSAGE, true);
+        switch_message_send.setChecked(is_send_message);
         ((MainActivity)getContext()).setFragmentDataPath(this);
     }
 }

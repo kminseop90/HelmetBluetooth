@@ -7,8 +7,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.YAxis.AxisDependency;
@@ -165,12 +163,6 @@ public class GraphFragment extends BaseFragment implements MainActivity.Fragment
         if(!TextUtils.isEmpty(gattData)) {
             String[] bleData = gattData.split(" ");
 
-            // check the hex string
-//        for(int i=0; i < 6; i++){
-//            if(!isHexadecimal(bleData[i])){
-//                return;
-//            }
-//        }
             // [3], [4], [5], = Accel x data
             addEntryAccel(Integer.parseInt(bleData[0], 16), Integer.parseInt(bleData[1], 16), (int) Integer.parseInt(bleData[2], 16));
             // [0], [1], [2], = Gyro x data
@@ -181,31 +173,4 @@ public class GraphFragment extends BaseFragment implements MainActivity.Fragment
 
     }
 
-
-    public static boolean isHexadecimal(String value)
-    {
-        if (value.startsWith("-"))
-        {
-            value = value.substring(1);
-        }
-
-        value = value.toLowerCase();
-
-        if (value.length() <= 2 || !value.startsWith("0x"))
-        {
-            return false;
-        }
-
-        for (int i = 2; i < value.length(); i++)
-        {
-            char c = value.charAt(i);
-
-            if (!(c >= '0' && c <= '9' || c >= 'a' && c <= 'f'))
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
 }

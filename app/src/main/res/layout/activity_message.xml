@@ -36,6 +36,39 @@
 
     </RelativeLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:id="@+id/phone_default_header"
+        android:layout_below="@id/message_header_layout"
+        android:background="#ffffff"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="26.3dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="27.3dp"
+            android:layout_height="27.3dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="32dp"
+            android:src="@mipmap/call" />
+
+        <TextView
+            android:id="@+id/message_default_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:background="@android:color/transparent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="13dp"
+            android:text="연락처를 입력하세요."
+            android:textColor="#172c54"
+            android:textSize="15.3dp" />
+
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/message_save_btn"
@@ -55,10 +88,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/message_save_btn"
-        android:layout_below="@id/message_header_layout"
+        android:layout_below="@id/phone_default_header"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="26.3dp" />
+        android:layout_marginRight="10dp" />
 
 
 </RelativeLayout>

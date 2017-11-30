@@ -12,7 +12,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.sample.helmetble.R;
@@ -77,13 +76,13 @@ public class BLEScanActivity extends BaseActivity {
                 finish();
             }
         }));
-
-        findViewById(R.id.temp_btn_moveID).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(v.getContext(), MainActivity.class));
-                finish();
-            }
-        });
+//
+//        findViewById(R.id.temp_btn_moveID).setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                startActivity(new Intent(v.getContext(), MainActivity.class));
+//                finish();
+//            }
+//        });
 
         ((ScanDeviceAdapter) scanDeviceList.getAdapter()).clear();
         handler.postDelayed(new Runnable() {

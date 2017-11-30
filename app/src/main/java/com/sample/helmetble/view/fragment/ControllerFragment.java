@@ -20,6 +20,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.sample.helmetble.view.fragment.GraphFragment.obj_line_accel;
+import static com.sample.helmetble.view.fragment.GraphFragment.obj_line_gyro;
+
 public class ControllerFragment extends BaseFragment implements MainActivity.FragmentDataPath {
     private final String KEY_ID_PREFERENCE = "user_id";
     @BindView(R.id.text_user_id)
@@ -63,10 +66,6 @@ public class ControllerFragment extends BaseFragment implements MainActivity.Fra
         View v = inflater.inflate(R.layout.fragment_controller, container, false);
         ButterKnife.bind(this, v);
 
-
-//        FragmentControllerBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_controller, container, false);
-
-
         textUserID.setText(userID + "의 디바이스");
 
         return v;
@@ -76,7 +75,13 @@ public class ControllerFragment extends BaseFragment implements MainActivity.Fra
 
     @OnClick(R.id.btn_start)
     public void onStartClick(View v) {
+        if(obj_line_accel != null && obj_line_gyro != null){
+            obj_line_gyro = null;
+            obj_line_accel = null;
+        }
+
         if(!((MainActivity)getContext()).isDataConnection() && ((MainActivity)getContext()).isConnected()) {
+            Toast.makeText(getContext(), "측정을 시작합니다.", Toast.LENGTH_SHORT).show();
             int accelerationMaxX = Integer.parseInt(maxAccelX.getText().toString());
             int accelerationMinX = Integer.parseInt(minAccelX.getText().toString());
             int accelerationMaxY = Integer.parseInt(maxAccelY.getText().toString());
@@ -94,7 +99,7 @@ public class ControllerFragment extends BaseFragment implements MainActivity.Fra
                     gyroMaxX, gyroMinX, gyroMaxY, gyroMinY, gyroMaxZ, gyroMinZ);
             ((MainActivity) getContext()).setDataConnection(true);
             ((MainActivity) getContext()).send(filterData);
-    }
+        }
         else{
             Toast.makeText(getContext(), "블루투스 디바이스에 연결되지 않았습니다!", Toast.LENGTH_SHORT).show();
         }
@@ -105,7 +110,6 @@ public class ControllerFragment extends BaseFragment implements MainActivity.Fra
         if(((MainActivity)getContext()).isDataConnection()) {
             ((MainActivity) getContext()).setDataConnection(false);
             ((MainActivity) getContext()).notiEnd();
-
             Toast.makeText(getContext(), "측정이 종료 되었습니다.", Toast.LENGTH_SHORT).show();
         }
     }
