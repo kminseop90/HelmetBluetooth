@@ -21,6 +21,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
 import android.telephony.SmsManager;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.sample.helmetble.model.vo.VODataFilter;
@@ -118,19 +119,21 @@ public class BluetoothLeService extends Service {
             String userSubPhone1 = prefs.getString(KEY_PHONE_PREFERENCE_SUB_1, "");
             String userSubPhone2 = prefs.getString(KEY_PHONE_PREFERENCE_SUB_2, "");
 
+            String sendMessage = "박재훈로부터 긴급상황  도움요청이 왔습니다! \n" +
+                    " CREATOS에 의해 발송";
 
             String str_Result = "Accel X : " + x + " Accel Y : " + y + " Accel Z : " + z;
             str_Result += "\n" + getLocation();
 
-            if (isSendMsg && !userPhone.isEmpty()) {
+            if (isSendMsg && !TextUtils.isEmpty(userPhone)) {
                 try {
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(userPhone, null, "SMS Sent\n" + str_Result, null, null);
-                    if (!userSubPhone1.isEmpty()) {
-                        smsManager.sendTextMessage(userSubPhone1, null, userPhone + " is Sent!\n" + str_Result, null, null);
+                    smsManager.sendTextMessage(userPhone, null, sendMessage, null, null);
+                    if (!TextUtils.isEmpty(userSubPhone1)) {
+                        smsManager.sendTextMessage(userSubPhone1, null, sendMessage, null, null);
                     }
-                    if (!userSubPhone2.isEmpty()) {
-                        smsManager.sendTextMessage(userSubPhone2, null, userPhone + " is Sent!\n" + str_Result, null, null);
+                    if (!TextUtils.isEmpty(userSubPhone2)) {
+                        smsManager.sendTextMessage(userSubPhone2, null, sendMessage, null, null);
                     }
                     Log.d(TAG, "sendMessage: " + isSendMsg);
                 } catch (Exception e) {
