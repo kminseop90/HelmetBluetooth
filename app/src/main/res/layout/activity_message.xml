@@ -16,9 +16,7 @@
             android:id="@+id/setting_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="34.7dp"
-            android:gravity="center_horizontal"
+            android:layout_centerInParent="true"
             android:letterSpacing="0.05"
             android:text="메세지 알림 설정"
             android:textColor="#ffffff"
@@ -30,22 +28,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="34.7dp"
             android:src="@mipmap/fill_1" />
+
+        <ImageView
+            android:padding="10dp"
+            android:id="@+id/message_setting_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/waste_bin" />
 
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/phone_default_header"
         android:layout_width="match_parent"
         android:layout_height="57dp"
-        android:id="@+id/phone_default_header"
         android:layout_below="@id/message_header_layout"
-        android:background="#ffffff"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="26.3dp"
-        android:layout_marginBottom="10dp"
+        android:background="#ffffff"
         android:orientation="horizontal">
 
         <ImageView
@@ -55,18 +63,180 @@
             android:layout_marginLeft="32dp"
             android:src="@mipmap/call" />
 
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+
         <TextView
             android:id="@+id/message_default_phone"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:background="@android:color/transparent"
             android:layout_gravity="center"
             android:layout_marginLeft="13dp"
+            android:background="@android:color/transparent"
             android:text="연락처를 입력하세요."
+            android:textAlignment="center"
             android:textColor="#172c54"
             android:textSize="15.3dp" />
 
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+
+
+        <ImageView
+            android:id="@+id/message_delete_img_01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="27dp"
+            android:src="@mipmap/remove_circular_button"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/phone_default_header_02"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:layout_below="@+id/phone_default_header"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="2dp"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="27.3dp"
+            android:layout_height="27.3dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="32dp"
+            android:src="@mipmap/call" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="13dp">
+
+            <TextView
+                android:id="@+id/message_default_phone_02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@android:color/transparent"
+                android:text="연락처를 입력하세요."
+                android:textAlignment="center"
+                android:textColor="#172c54"
+                android:textSize="15.3dp" />
+
+            <EditText
+                android:id="@+id/message_default_phone_input02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/message_default_phone_02"
+                android:layout_alignRight="@id/message_default_phone_02"
+                android:layout_centerInParent="true"
+                android:inputType="phone"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/message_delete_img_02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="27dp"
+            android:src="@mipmap/remove_circular_button" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/phone_default_header_03"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:layout_below="@id/phone_default_header_02"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="2dp"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="27.3dp"
+            android:layout_height="27.3dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="32dp"
+            android:src="@mipmap/call" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="13dp">
+
+            <TextView
+                android:id="@+id/message_default_phone_03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@android:color/transparent"
+                android:text="연락처를 입력하세요."
+                android:textAlignment="center"
+                android:textColor="#172c54"
+                android:textSize="15.3dp" />
+
+            <EditText
+                android:id="@+id/message_default_phone_input03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/message_default_phone_03"
+                android:layout_alignRight="@id/message_default_phone_03"
+                android:layout_centerInParent="true"
+                android:inputType="phone"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/message_delete_img_03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="27dp"
+            android:src="@mipmap/remove_circular_button" />
 
     </LinearLayout>
 
@@ -82,15 +252,5 @@
         android:textColor="#ffffff"
         android:textSize="20sp"
         android:textStyle="bold" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/message_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/message_save_btn"
-        android:layout_below="@id/phone_default_header"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp" />
-
 
 </RelativeLayout>
