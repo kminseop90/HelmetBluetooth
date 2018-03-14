@@ -54,7 +54,7 @@ public class SettingFragment extends BaseFragment implements MainActivity.Fragme
     private final String KEY_SEND_MESSAGE = "is_send_msg";
 
     private String user_phone_number="";
-    private boolean is_send_message = true;
+    private boolean is_send_message = false;
 
     @Nullable
     @Override
@@ -62,7 +62,7 @@ public class SettingFragment extends BaseFragment implements MainActivity.Fragme
         SharedPreferences prefs = getActivity().getSharedPreferences("PrefName", getActivity().MODE_PRIVATE);
         String userID = prefs.getString(KEY_ID_PREFERENCE, "");
         user_phone_number = prefs.getString(KEY_PHONE_PREFERENCE, "");
-        is_send_message = prefs.getBoolean(KEY_SEND_MESSAGE, true);
+        is_send_message = prefs.getBoolean(KEY_SEND_MESSAGE, false);
 
         View v = inflater.inflate(R.layout.fragment_setting, container, false);
         ButterKnife.bind(this, v);
@@ -126,7 +126,7 @@ public class SettingFragment extends BaseFragment implements MainActivity.Fragme
     public void onGattDataUpdate(String gattData) {
         if(!TextUtils.isEmpty(gattData)) {
             String[] batteryData = gattData.split(" ");
-            batteryView.setText(batteryData[6]);
+            batteryView.setText(batteryData[6] + "%");
         }
     }
 

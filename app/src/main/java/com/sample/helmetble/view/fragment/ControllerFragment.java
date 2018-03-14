@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +55,11 @@ public class ControllerFragment extends BaseFragment implements MainActivity.Fra
     @BindView(R.id.input_accelZ_y)
     EditText maxAccelZ;
 
+    @BindView(R.id.btn_start)
+    Button startBtn;
+    @BindView(R.id.btn_end)
+    Button endBtn;
+
 
     VODataFilter filterData = null;
 
@@ -72,15 +78,14 @@ public class ControllerFragment extends BaseFragment implements MainActivity.Fra
     }
 
 
-
     @OnClick(R.id.btn_start)
     public void onStartClick(View v) {
-        if(obj_line_accel != null && obj_line_gyro != null){
+        if (obj_line_accel != null && obj_line_gyro != null) {
             obj_line_gyro = null;
             obj_line_accel = null;
         }
 
-        if(!((MainActivity)getContext()).isDataConnection() && ((MainActivity)getContext()).isConnected()) {
+        if (!((MainActivity) getContext()).isDataConnection() && ((MainActivity) getContext()).isConnected()) {
             Toast.makeText(getContext(), "측정을 시작합니다.", Toast.LENGTH_SHORT).show();
             int accelerationMaxX = Integer.parseInt(maxAccelX.getText().toString());
             int accelerationMinX = Integer.parseInt(minAccelX.getText().toString());
@@ -99,15 +104,16 @@ public class ControllerFragment extends BaseFragment implements MainActivity.Fra
                     gyroMaxX, gyroMinX, gyroMaxY, gyroMinY, gyroMaxZ, gyroMinZ);
             ((MainActivity) getContext()).setDataConnection(true);
             ((MainActivity) getContext()).send(filterData);
-        }
-        else{
-            Toast.makeText(getContext(), "블루투스 디바이스에 연결되지 않았습니다!", Toast.LENGTH_SHORT).show();
+        } else if (((MainActivity) getContext()).isDataConnection()) {
+            Toast.makeText(getContext(), "크레아토스가 이미 동작중입니다.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "크레아토스 연결을 실패하였습니다.", Toast.LENGTH_SHORT).show();
         }
     }
 
     @OnClick(R.id.btn_end)
     public void onEndClick(View v) {
-        if(((MainActivity)getContext()).isDataConnection()) {
+        if (((MainActivity) getContext()).isDataConnection()) {
             ((MainActivity) getContext()).setDataConnection(false);
             ((MainActivity) getContext()).notiEnd();
             Toast.makeText(getContext(), "측정이 종료 되었습니다.", Toast.LENGTH_SHORT).show();
@@ -116,15 +122,15 @@ public class ControllerFragment extends BaseFragment implements MainActivity.Fra
 
     @Override
     public void onGattDataUpdate(String gattData) {
-        if(!TextUtils.isEmpty(gattData)) {
+        if (!TextUtils.isEmpty(gattData)) {
             String[] batteryData = gattData.split(" ");
-            batteryView.setText(batteryData[6]);
+            batteryView.setText(batteryData[6] + "%");
         }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        ((MainActivity)getContext()).setFragmentDataPath(this);
+        ((MainActivity) getContext()).setFragmentDataPath(this);
     }
 }

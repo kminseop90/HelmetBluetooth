@@ -160,12 +160,13 @@ public class MainActivity extends BaseActivity {
 
     private void displayData(String data) {
         if (data != null) {
+            Log.d(TAG, "displayData: " + data);
             String[] code = data.split("\n");
             SimpleDateFormat format = new SimpleDateFormat();
 //            gattDataBuffer.append(format.format(System.currentTimeMillis()) + "_");
             gattDataBuffer.append(code[1]);
             gattDataBuffer.append("\n");
-            fragmentDataPath.onGattDataUpdate(code[1]);
+            fragmentDataPath.onGattDataUpdate(code[code.length - 1]);
         }
     }
 

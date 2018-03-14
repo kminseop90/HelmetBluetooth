@@ -72,7 +72,6 @@
             android:layout_marginTop="129.7dp"
             android:layout_toRightOf="@id/text_Battery"
             android:letterSpacing="0.05"
-            android:text="100%"
             android:textColor="#5378fe"
             android:textSize="18.3sp"
             android:textStyle="bold" />
@@ -163,11 +162,11 @@
                     android:layout_alignTop="@+id/textViewX"
                     android:layout_marginLeft="120dp"
                     android:gravity="center"
-                    android:hint="0"
-                    android:inputType="numberDecimal"
-                    android:maxLength="3"
+                    android:hint="-127"
+                    android:inputType="numberSigned"
+                    android:maxLength="4"
                     android:selectAllOnFocus="false"
-                    android:text="0"
+                    android:text="-127"
                     android:textColor="#4f4f4f" />
 
 
@@ -179,11 +178,11 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="240dp"
                     android:gravity="center"
-                    android:hint="255"
-                    android:inputType="numberDecimal"
-                    android:maxLength="3"
+                    android:hint="127"
+                    android:inputType="numberSigned"
+                    android:maxLength="4"
                     android:singleLine="true"
-                    android:text="255"
+                    android:text="127"
                     android:textColor="#4f4f4f"
                     android:textSize="18.3sp" />
             </RelativeLayout>
@@ -239,12 +238,12 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="120dp"
                     android:gravity="center"
-                    android:hint="0"
-                    android:inputType="numberDecimal"
-                    android:maxLength="3"
+                    android:hint="-127"
+                    android:inputType="numberSigned"
+                    android:maxLength="4"
                     android:selectAllOnFocus="false"
                     android:singleLine="true"
-                    android:text="0"
+                    android:text="-127"
                     android:textColor="#4f4f4f" />
 
 
@@ -252,15 +251,13 @@
                     android:id="@+id/input_gyroY_y"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentTop="true"
                     android:layout_marginLeft="240dp"
                     android:gravity="center"
-                    android:hint="255"
-                    android:inputType="numberDecimal"
-                    android:maxLength="3"
+                    android:hint="127"
+                    android:inputType="numberSigned"
+                    android:maxLength="4"
                     android:singleLine="true"
-                    android:text="255"
+                    android:text="127"
                     android:textColor="#4f4f4f"
                     android:textSize="18.3sp" />
             </RelativeLayout>
@@ -314,11 +311,11 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="120dp"
                     android:gravity="center"
-                    android:hint="0"
-                    android:inputType="numberDecimal"
-                    android:maxLength="3"
+                    android:hint="-127"
+                    android:inputType="numberSigned"
+                    android:maxLength="4"
                     android:selectAllOnFocus="false"
-                    android:text="0"
+                    android:text="-127"
                     android:textColor="#4f4f4f" />
 
 
@@ -326,14 +323,12 @@
                     android:id="@+id/input_gyroZ_y"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentTop="true"
                     android:layout_marginLeft="240dp"
                     android:gravity="center"
-                    android:hint="255"
-                    android:inputType="numberDecimal"
-                    android:maxLength="3"
-                    android:text="255"
+                    android:hint="127"
+                    android:inputType="numberSigned"
+                    android:maxLength="4"
+                    android:text="127"
                     android:textColor="#4f4f4f"
                     android:textSize="18.3sp" />
             </RelativeLayout>
@@ -446,12 +441,12 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="120dp"
                     android:gravity="center"
-                    android:hint="0"
-                    android:inputType="numberDecimal"
-                    android:maxLength="3"
+                    android:hint="-127"
+                    android:inputType="numberSigned"
+                    android:maxLength="4"
                     android:selectAllOnFocus="false"
                     android:singleLine="true"
-                    android:text="0"
+                    android:text="-127"
                     android:textColor="#4f4f4f" />
 
 
@@ -463,11 +458,11 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="240dp"
                     android:gravity="center"
-                    android:hint="255"
-                    android:inputType="numberDecimal"
-                    android:maxLength="3"
+                    android:hint="127"
+                    android:inputType="numberSigned"
+                    android:maxLength="4"
                     android:singleLine="true"
-                    android:text="255"
+                    android:text="127"
                     android:textColor="#4f4f4f"
                     android:textSize="18.3sp" />
             </RelativeLayout>
@@ -520,12 +515,12 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="120dp"
                     android:gravity="center"
-                    android:hint="0"
-                    android:inputType="numberDecimal"
-                    android:maxLength="3"
+                    android:hint="-127"
+                    android:inputType="numberSigned"
+                    android:maxLength="4"
                     android:selectAllOnFocus="false"
                     android:singleLine="true"
-                    android:text="0"
+                    android:text="-127"
                     android:textColor="#4f4f4f" />
 
 
@@ -537,11 +532,11 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="240dp"
                     android:gravity="center"
-                    android:hint="255"
-                    android:inputType="numberDecimal"
-                    android:maxLength="3"
+                    android:hint="127"
+                    android:inputType="numberSigned"
+                    android:maxLength="4"
                     android:singleLine="true"
-                    android:text="255"
+                    android:text="127"
                     android:textColor="#4f4f4f"
                     android:textSize="18.3sp" />
             </RelativeLayout>
@@ -571,12 +566,12 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="120dp"
                     android:gravity="center"
-                    android:hint="0"
-                    android:inputType="numberDecimal"
-                    android:maxLength="3"
+                    android:hint="-127"
+                    android:inputType="numberSigned"
+                    android:maxLength="4"
                     android:selectAllOnFocus="false"
                     android:singleLine="true"
-                    android:text="0"
+                    android:text="-127"
                     android:textColor="#4f4f4f" />
 
 
@@ -588,13 +583,13 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="240dp"
                     android:gravity="center"
-                    android:hint="255"
-                    android:inputType="numberDecimal"
-                    android:maxLength="3"
+                    android:hint="127"
+                    android:inputType="numberSigned"
+                    android:maxLength="4"
                     android:singleLine="true"
-                    android:text="255"
+                    android:text="127"
                     android:textColor="#4f4f4f"
-                    android:textSize="18.3sp" />
+                    android:textSize="18.4sp" />
             </RelativeLayout>
 
 

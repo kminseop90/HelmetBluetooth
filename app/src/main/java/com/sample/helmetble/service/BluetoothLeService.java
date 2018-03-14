@@ -30,7 +30,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -96,11 +95,15 @@ public class BluetoothLeService extends Service {
 
     VODataFilter.FilterCallBack filterCallBack = new VODataFilter.FilterCallBack() {
         @Override
-        public void sendDataBLE(int flag) { // 10번 조건에 맞을 시 0x00을 보냄 flag 가 일단 0임
+        public void sendDataBLE(String data) {
             List<BluetoothGattService> services = mBluetoothGatt.getServices();
             List<BluetoothGattCharacteristic> characteristics = services.get(services.size() - 1).getCharacteristics();
-            String unixTimeString = Integer.toHexString(flag);
-            byte[] byteArray = new BigInteger(unixTimeString, 16).toByteArray();
+//            String unixTimeString = Integer.toHexString(flag);
+//            byte[] byteArray = new BigInteger(unixTimeString, 16).toByteArray();
+            byte[] byteArray = new byte[4];
+            for(int  i = 0 ; i < data.split(" ").length; i++) {
+                byteArray[i] = (byte)((int)Integer.valueOf(data.split(" ")[i]));
+            }
             characteristics.get(0).setValue(byteArray);
             boolean status = writeCharacteristic(characteristics.get(0));
             Log.d(TAG, "sendDataBLE: " + status);
@@ -112,18 +115,20 @@ public class BluetoothLeService extends Service {
             String KEY_PHONE_PREFERENCE = "user_phone";
             String KEY_PHONE_PREFERENCE_SUB_1 = "user_phone_sub_1";
             String KEY_PHONE_PREFERENCE_SUB_2 = "user_phone_sub_2";
+            String KEY_ID_PREFERENCE = "user_id";
 
             SharedPreferences prefs = getApplicationContext().getSharedPreferences("PrefName", getApplicationContext().MODE_PRIVATE);
             boolean isSendMsg = prefs.getBoolean(KEY_SENDMESSAGE, true);
             String userPhone = prefs.getString(KEY_PHONE_PREFERENCE, "");
             String userSubPhone1 = prefs.getString(KEY_PHONE_PREFERENCE_SUB_1, "");
             String userSubPhone2 = prefs.getString(KEY_PHONE_PREFERENCE_SUB_2, "");
+            String userName = prefs.getString(KEY_ID_PREFERENCE, "NoName");
 
-            String sendMessage = "박재훈로부터 긴급상황  도움요청이 왔습니다! \n" +
+            String sendMessage = userName + "로부터 긴급상황  도움요청이 왔습니다! \n" +
                     " CREATOS에 의해 발송";
 
-            String str_Result = "Accel X : " + x + " Accel Y : " + y + " Accel Z : " + z;
-            str_Result += "\n" + getLocation();
+//            String str_Result = "Accel X : " + x + " Accel Y : " + y + " Accel Z : " + z;
+//            str_Result += "\n" + getLocation();
 
             if (isSendMsg && !TextUtils.isEmpty(userPhone)) {
                 try {
@@ -142,6 +147,8 @@ public class BluetoothLeService extends Service {
                 }
             }
         }
+
+
     };
 
 
@@ -233,11 +240,12 @@ public class BluetoothLeService extends Service {
         } else {
             // For all other profiles, writes the data formatted in HEX.
             final byte[] data = characteristic.getValue();
+
             if (data != null && data.length > 0) {
                 final StringBuilder stringBuilder = new StringBuilder(data.length);
-                for (byte byteChar : data)
-                    stringBuilder.append(String.format("%02X ", byteChar));
-
+                for (byte byteChar : data) {
+                    stringBuilder.append(String.format("%02d ", byteChar));
+                }
                 // 컨트롤러에서 받은 값을 기준으로 모듈에 데이터를 날려주거나 폰에 메세지를 송신하는 메소드를 호출한다
                 filterData.filter(stringBuilder.toString());
                 intent.putExtra(EXTRA_DATA, new String(data) + "\n" + stringBuilder.toString());
@@ -279,7 +287,7 @@ public class BluetoothLeService extends Service {
                 SimpleDateFormat dataFormat = new SimpleDateFormat("hh:mm:ss");
                 String date = dataFormat.format(calendar.getTime()) + " - ";
 
-                data = date + getLocation()+ data;
+//                data = date + getLocation()+ data;
                 data += "\n";
                 fos.write(data.getBytes());
             } catch (IOException e) {
