@@ -109,8 +109,8 @@ public class VODataFilter {
         if(gyroCount == 10) {
             String[] hexData = data.split(" ");
             gyroCount = 0;
-            callback.sendDataBLE(String.format("%s %s %s %s", hexData[9], hexData[10], hexData[11], hexData[12]));
-
+//            callback.sendDataBLE(String.format("%s %s %s %s", hexData[9], hexData[10], hexData[11], hexData[12]));
+//              데이터 모듈로 보내는거 삭제
 
         }
     }
