@@ -287,7 +287,7 @@ public class BluetoothLeService extends Service {
                 SimpleDateFormat dataFormat = new SimpleDateFormat("hh:mm:ss");
                 String date = dataFormat.format(calendar.getTime()) + " - ";
 
-//                data = date + getLocation()+ data;
+                data = date + getLocation()+ data;
                 data += "\n";
                 fos.write(data.getBytes());
             } catch (IOException e) {
