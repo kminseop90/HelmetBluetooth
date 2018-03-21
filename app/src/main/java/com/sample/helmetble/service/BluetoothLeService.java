@@ -118,7 +118,7 @@ public class BluetoothLeService extends Service {
             String KEY_ID_PREFERENCE = "user_id";
 
             SharedPreferences prefs = getApplicationContext().getSharedPreferences("PrefName", getApplicationContext().MODE_PRIVATE);
-            boolean isSendMsg = prefs.getBoolean(KEY_SENDMESSAGE, true);
+            boolean isSendMsg = prefs.getBoolean(KEY_SENDMESSAGE, false);
             String userPhone = prefs.getString(KEY_PHONE_PREFERENCE, "");
             String userSubPhone1 = prefs.getString(KEY_PHONE_PREFERENCE_SUB_1, "");
             String userSubPhone2 = prefs.getString(KEY_PHONE_PREFERENCE_SUB_2, "");

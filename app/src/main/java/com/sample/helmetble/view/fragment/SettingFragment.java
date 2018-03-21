@@ -135,7 +135,7 @@ public class SettingFragment extends BaseFragment implements MainActivity.Fragme
         super.onResume();
 
         SharedPreferences prefs = getActivity().getSharedPreferences("PrefName", getActivity().MODE_PRIVATE);
-        is_send_message = prefs.getBoolean(KEY_SEND_MESSAGE, true);
+        is_send_message = prefs.getBoolean(KEY_SEND_MESSAGE, false);
         switch_message_send.setChecked(is_send_message);
         ((MainActivity)getContext()).setFragmentDataPath(this);
     }

@@ -164,9 +164,9 @@ public class GraphFragment extends BaseFragment implements MainActivity.Fragment
             String[] bleData = gattData.split(" ");
 
             // [3], [4], [5], = Accel x data
-            addEntryAccel(Integer.parseInt(bleData[0], 16), Integer.parseInt(bleData[1], 16), (int) Integer.parseInt(bleData[2], 16));
+            addEntryAccel(Integer.parseInt(bleData[0]), Integer.parseInt(bleData[1]), (int) Integer.parseInt(bleData[2]));
             // [0], [1], [2], = Gyro x data
-            addEntryGyro(Integer.parseInt(bleData[3], 16), Integer.parseInt(bleData[4], 16), Integer.parseInt(bleData[5], 16));
+            addEntryGyro(Integer.parseInt(bleData[3]), Integer.parseInt(bleData[4]), Integer.parseInt(bleData[5]));
 
 //            gattDataView.setText(gattData);
         }
