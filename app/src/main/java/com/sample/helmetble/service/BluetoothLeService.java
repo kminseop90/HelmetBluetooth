@@ -283,11 +283,6 @@ public class BluetoothLeService extends Service {
 //            String unixTimeString = Integer.toHexString(unixTime);
 //            byte[] byteArray = new BigInteger(unixTimeString, 16).toByteArray();
             try {
-                Calendar calendar = Calendar.getInstance();
-                SimpleDateFormat dataFormat = new SimpleDateFormat("hh:mm:ss");
-                String date = dataFormat.format(calendar.getTime()) + " - ";
-
-                data = date + getLocation()+ data;
                 data += "\n";
                 fos.write(data.getBytes());
             } catch (IOException e) {
