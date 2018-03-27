@@ -173,7 +173,6 @@
                             android:inputType="numberSigned"
                             android:maxLength="4"
                             android:selectAllOnFocus="false"
-                            android:text="-127"
                             android:textColor="#4f4f4f" />
 
 
@@ -187,7 +186,6 @@
                             android:inputType="numberSigned"
                             android:maxLength="4"
                             android:singleLine="true"
-                            android:text="127"
                             android:textColor="#4f4f4f"
                             android:textSize="18.3sp" />
                     </RelativeLayout>
@@ -245,7 +243,6 @@
                             android:maxLength="4"
                             android:selectAllOnFocus="false"
                             android:singleLine="true"
-                            android:text="-127"
                             android:textColor="#4f4f4f" />
 
 
@@ -259,7 +256,6 @@
                             android:inputType="numberSigned"
                             android:maxLength="4"
                             android:singleLine="true"
-                            android:text="127"
                             android:textColor="#4f4f4f"
                             android:textSize="18.3sp" />
                     </RelativeLayout>
@@ -314,7 +310,6 @@
                             android:inputType="numberSigned"
                             android:maxLength="4"
                             android:selectAllOnFocus="false"
-                            android:text="-127"
                             android:textColor="#4f4f4f" />
 
 
@@ -327,7 +322,6 @@
                             android:hint="127"
                             android:inputType="numberSigned"
                             android:maxLength="4"
-                            android:text="127"
                             android:textColor="#4f4f4f"
                             android:textSize="18.3sp" />
                     </RelativeLayout>
@@ -442,7 +436,6 @@
                             android:maxLength="4"
                             android:selectAllOnFocus="false"
                             android:singleLine="true"
-                            android:text="-127"
                             android:textColor="#4f4f4f" />
 
 
@@ -456,7 +449,6 @@
                             android:inputType="numberSigned"
                             android:maxLength="4"
                             android:singleLine="true"
-                            android:text="127"
                             android:textColor="#4f4f4f"
                             android:textSize="18.3sp" />
                     </RelativeLayout>
@@ -511,7 +503,6 @@
                             android:maxLength="4"
                             android:selectAllOnFocus="false"
                             android:singleLine="true"
-                            android:text="-127"
                             android:textColor="#4f4f4f" />
 
 
@@ -525,7 +516,6 @@
                             android:inputType="numberSigned"
                             android:maxLength="4"
                             android:singleLine="true"
-                            android:text="127"
                             android:textColor="#4f4f4f"
                             android:textSize="18.3sp" />
                     </RelativeLayout>
@@ -557,7 +547,6 @@
                             android:maxLength="4"
                             android:selectAllOnFocus="false"
                             android:singleLine="true"
-                            android:text="-127"
                             android:textColor="#4f4f4f" />
 
 
@@ -571,7 +560,6 @@
                             android:inputType="numberSigned"
                             android:maxLength="4"
                             android:singleLine="true"
-                            android:text="127"
                             android:textColor="#4f4f4f"
                             android:textSize="18.4sp" />
                     </RelativeLayout>

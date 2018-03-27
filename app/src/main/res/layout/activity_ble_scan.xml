@@ -57,13 +57,26 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/scan_save_btn"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:letterSpacing="0.58"
+        android:text="검 색"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/scan_device_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="false"
         android:layout_below="@id/navigation_move_btn"
-        android:layout_marginBottom="23dp"
+        android:layout_above="@id/scan_save_btn"
         android:layout_marginLeft="13dp"
         android:layout_marginRight="13dp"
         android:layout_marginTop="16.7dp" />

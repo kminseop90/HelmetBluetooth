@@ -21,6 +21,7 @@ import com.sample.helmetble.base.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class BLEScanActivity extends BaseActivity {
@@ -92,6 +93,24 @@ public class BLEScanActivity extends BaseActivity {
             }
         }, 5000);
         bluetoothAdapter.startLeScan(scanCallback);
+    }
+
+    @OnClick(R.id.scan_save_btn)
+    public void onScanClick() {
+        if(bluetoothAdapter.isDiscovering()) {
+            bluetoothAdapter.stopLeScan(scanCallback);
+        }
+        ((ScanDeviceAdapter) scanDeviceList.getAdapter()).clear();
+
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                bluetoothAdapter.stopLeScan(scanCallback);
+            }
+        }, 5000);
+        bluetoothAdapter.startLeScan(scanCallback);
+
     }
 
 

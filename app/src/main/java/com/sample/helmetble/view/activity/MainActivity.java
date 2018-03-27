@@ -78,7 +78,7 @@ public class MainActivity extends BaseActivity {
         mainTabLayout.addTab(mainTabLayout.newTab().setText("세 팅"));
 //        binding.mainTabLayout.setTabGravity(binding.mainTabLayout.GRAVITY_FILL);
 
-        fm.beginTransaction().add(R.id.main_view_layout, new ControllerFragment()).commit();
+        fm.beginTransaction().add(R.id.main_view_layout, controllerFragment).commit();
         mainTabLayout.addOnTabSelectedListener(tabSelectedListener);
 
 
@@ -142,7 +142,7 @@ public class MainActivity extends BaseActivity {
                 dialog.show();
                 displayGattServices(mBluetoothLeService.getSupportedGattServices());
             } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
-                if (isDataConnection) {
+                if (isDataConnection()) {
                     displayData(intent.getStringExtra(BluetoothLeService.EXTRA_DATA));
                 }
             }
@@ -347,6 +347,7 @@ public class MainActivity extends BaseActivity {
         Log.d(TAG, String.format("RequestCode = %d, ResultCode = %d", requestCode, resultCode));
         if (requestCode == 0) { // bluetoothSetting
             if (resultCode == RESULT_OK && data != null) {
+                setDataConnection(false);
                 mDeviceName = data.getStringExtra(EXTRAS_DEVICE_NAME);
                 mDeviceAddress = data.getStringExtra(EXTRAS_DEVICE_ADDRESS);
 

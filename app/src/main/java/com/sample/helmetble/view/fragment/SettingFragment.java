@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.sample.helmetble.R;
 import com.sample.helmetble.base.BaseFragment;
+import com.sample.helmetble.util.Utils;
 import com.sample.helmetble.view.activity.BLESettingActivity;
 import com.sample.helmetble.view.activity.MainActivity;
 import com.sample.helmetble.view.activity.MessageActivity;
@@ -126,7 +127,7 @@ public class SettingFragment extends BaseFragment implements MainActivity.Fragme
     public void onGattDataUpdate(String gattData) {
         if(!TextUtils.isEmpty(gattData)) {
             String[] batteryData = gattData.split(" ");
-            batteryView.setText(batteryData[6] + "%");
+            batteryView.setText(Utils.parseInt(batteryData[6]) + "%");
         }
     }
 

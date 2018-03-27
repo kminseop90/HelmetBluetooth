@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.sample.helmetble.R;
 import com.sample.helmetble.base.BaseFragment;
 import com.sample.helmetble.model.vo.VODataFilter;
+import com.sample.helmetble.util.Utils;
 import com.sample.helmetble.view.activity.MainActivity;
 
 import butterknife.BindView;
@@ -63,18 +64,48 @@ public class ControllerFragment extends BaseFragment implements MainActivity.Fra
 
     VODataFilter filterData = null;
 
+    private String minAccelXValue = "0";
+    private String minAccelYValue = "0";
+    private String minAccelZValue = "0";
+    private String maxAccelXValue = "0";
+    private String maxAccelYValue = "0";
+    private String maxAccelZValue = "0";
+
+    private String minGyroXValue = "0";
+    private String minGyroYValue = "0";
+    private String minGyroZValue = "0";
+    private String maxGyroXValue = "0";
+    private String maxGyroYValue = "0";
+    private String maxGyroZValue = "0";
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        SharedPreferences prefs = getActivity().getSharedPreferences("PrefName", getActivity().MODE_PRIVATE);
-        String userID = prefs.getString(KEY_ID_PREFERENCE, "");
-
         View v = inflater.inflate(R.layout.fragment_controller, container, false);
         ButterKnife.bind(this, v);
-
-        textUserID.setText(userID + "의 디바이스");
+        init();
 
         return v;
+    }
+
+    private void init() {
+        minAccelX.setText(minAccelXValue);
+        minAccelY.setText(minAccelYValue);
+        minAccelZ.setText(minAccelZValue);
+        maxAccelX.setText(maxAccelXValue);
+        maxAccelY.setText(maxAccelYValue);
+        maxAccelZ.setText(maxAccelZValue);
+
+        minGyroX.setText(minGyroXValue);
+        minGyroY.setText(minGyroYValue);
+        minGyroZ.setText(minGyroZValue);
+        maxGyroX.setText(maxGyroXValue);
+        maxGyroY.setText(maxGyroYValue);
+        maxGyroZ.setText(maxGyroZValue);
+
+        SharedPreferences prefs = getActivity().getSharedPreferences("PrefName", getActivity().MODE_PRIVATE);
+        String userID = prefs.getString(KEY_ID_PREFERENCE, "");
+        textUserID.setText(userID + "의 디바이스");
     }
 
 
@@ -87,18 +118,19 @@ public class ControllerFragment extends BaseFragment implements MainActivity.Fra
 
         if (!((MainActivity) getContext()).isDataConnection() && ((MainActivity) getContext()).isConnected()) {
             Toast.makeText(getContext(), "측정을 시작합니다.", Toast.LENGTH_SHORT).show();
-            int accelerationMaxX = Integer.parseInt(maxAccelX.getText().toString());
-            int accelerationMinX = Integer.parseInt(minAccelX.getText().toString());
-            int accelerationMaxY = Integer.parseInt(maxAccelY.getText().toString());
-            int accelerationMinY = Integer.parseInt(minAccelY.getText().toString());
-            int accelerationMaxZ = Integer.parseInt(maxAccelZ.getText().toString());
-            int accelerationMinZ = Integer.parseInt(minAccelZ.getText().toString());
-            int gyroMaxX = Integer.parseInt(maxGyroX.getText().toString());
-            int gyroMinX = Integer.parseInt(minGyroX.getText().toString());
-            int gyroMaxY = Integer.parseInt(maxGyroY.getText().toString());
-            int gyroMinY = Integer.parseInt(minGyroY.getText().toString());
-            int gyroMaxZ = Integer.parseInt(maxGyroZ.getText().toString());
-            int gyroMinZ = Integer.parseInt(minGyroZ.getText().toString());
+
+            int accelerationMaxX = Utils.parseInt(maxAccelX.getText().toString());
+            int accelerationMinX = Utils.parseInt(minAccelX.getText().toString());
+            int accelerationMaxY = Utils.parseInt(maxAccelY.getText().toString());
+            int accelerationMinY = Utils.parseInt(minAccelY.getText().toString());
+            int accelerationMaxZ = Utils.parseInt(maxAccelZ.getText().toString());
+            int accelerationMinZ = Utils.parseInt(minAccelZ.getText().toString());
+            int gyroMaxX = Utils.parseInt(maxGyroX.getText().toString());
+            int gyroMinX = Utils.parseInt(minGyroX.getText().toString());
+            int gyroMaxY = Utils.parseInt(maxGyroY.getText().toString());
+            int gyroMinY = Utils.parseInt(minGyroY.getText().toString());
+            int gyroMaxZ = Utils.parseInt(maxGyroZ.getText().toString());
+            int gyroMinZ = Utils.parseInt(minGyroZ.getText().toString());
 
             filterData = new VODataFilter(accelerationMaxX, accelerationMinX, accelerationMaxY, accelerationMinY, accelerationMaxZ, accelerationMinZ,
                     gyroMaxX, gyroMinX, gyroMaxY, gyroMinY, gyroMaxZ, gyroMinZ);
@@ -124,7 +156,7 @@ public class ControllerFragment extends BaseFragment implements MainActivity.Fra
     public void onGattDataUpdate(String gattData) {
         if (!TextUtils.isEmpty(gattData)) {
             String[] batteryData = gattData.split(" ");
-            batteryView.setText(batteryData[6] + "%");
+            batteryView.setText(Utils.parseInt(batteryData[6]) + "%");
         }
     }
 
@@ -132,5 +164,37 @@ public class ControllerFragment extends BaseFragment implements MainActivity.Fra
     public void onResume() {
         super.onResume();
         ((MainActivity) getContext()).setFragmentDataPath(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        int accelerationMaxX = Utils.parseInt(maxAccelX.getText().toString());
+        int accelerationMinX = Utils.parseInt(minAccelX.getText().toString());
+        int accelerationMaxY = Utils.parseInt(maxAccelY.getText().toString());
+        int accelerationMinY = Utils.parseInt(minAccelY.getText().toString());
+        int accelerationMaxZ = Utils.parseInt(maxAccelZ.getText().toString());
+        int accelerationMinZ = Utils.parseInt(minAccelZ.getText().toString());
+        int gyroMaxX = Utils.parseInt(maxGyroX.getText().toString());
+        int gyroMinX = Utils.parseInt(minGyroX.getText().toString());
+        int gyroMaxY = Utils.parseInt(maxGyroY.getText().toString());
+        int gyroMinY = Utils.parseInt(minGyroY.getText().toString());
+        int gyroMaxZ = Utils.parseInt(maxGyroZ.getText().toString());
+        int gyroMinZ = Utils.parseInt(minGyroZ.getText().toString());
+
+        minAccelXValue = accelerationMinX + "";
+        minAccelYValue = accelerationMinY + "";
+        minAccelZValue = accelerationMinZ + "";
+        maxAccelXValue = accelerationMaxX + "";
+        maxAccelYValue = accelerationMaxY + "";
+        maxAccelZValue = accelerationMaxZ + "";
+
+        minGyroXValue = gyroMinX + "";
+        minGyroYValue = gyroMinY + "";
+        minGyroZValue = gyroMinZ + "";
+        maxGyroXValue = gyroMaxX + "";
+        maxGyroYValue = gyroMaxY + "";
+        maxGyroZValue = gyroMaxZ + "";
+
     }
 }

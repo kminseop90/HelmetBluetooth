@@ -113,17 +113,17 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/setting_save_btn"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
-        android:gravity="center"
-        android:letterSpacing="0.58"
-        android:text="검 색"
-        android:textColor="#ffffff"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+    android:id="@+id/setting_save_btn"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:layout_alignParentBottom="true"
+    android:background="@color/colorPrimary"
+    android:gravity="center"
+    android:letterSpacing="0.58"
+    android:text="검 색"
+    android:textColor="#ffffff"
+    android:textSize="20sp"
+    android:textStyle="bold" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/setting_device_list"
