@@ -117,7 +117,6 @@ public class ControllerFragment extends BaseFragment implements MainActivity.Fra
         }
 
         if (!((MainActivity) getContext()).isDataConnection() && ((MainActivity) getContext()).isConnected()) {
-            Toast.makeText(getContext(), "측정을 시작합니다.", Toast.LENGTH_SHORT).show();
 
             int accelerationMaxX = Utils.parseInt(maxAccelX.getText().toString());
             int accelerationMinX = Utils.parseInt(minAccelX.getText().toString());
@@ -134,8 +133,13 @@ public class ControllerFragment extends BaseFragment implements MainActivity.Fra
 
             filterData = new VODataFilter(accelerationMaxX, accelerationMinX, accelerationMaxY, accelerationMinY, accelerationMaxZ, accelerationMinZ,
                     gyroMaxX, gyroMinX, gyroMaxY, gyroMinY, gyroMaxZ, gyroMinZ);
-            ((MainActivity) getContext()).setDataConnection(true);
-            ((MainActivity) getContext()).send(filterData);
+            try {
+                ((MainActivity) getContext()).send(filterData);
+                ((MainActivity) getContext()).setDataConnection(true);
+                Toast.makeText(getContext(), "측정을 시작합니다.", Toast.LENGTH_SHORT).show();
+            } catch(Exception e) {
+                Toast.makeText(getContext(), "크레아토스 연결을 실패하였습니다.", Toast.LENGTH_SHORT).show();
+            }
         } else if (((MainActivity) getContext()).isDataConnection()) {
             Toast.makeText(getContext(), "크레아토스가 이미 동작중입니다.", Toast.LENGTH_SHORT).show();
         } else {

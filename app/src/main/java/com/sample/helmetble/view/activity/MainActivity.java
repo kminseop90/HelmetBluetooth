@@ -21,6 +21,7 @@ import com.sample.helmetble.base.BaseFragment;
 import com.sample.helmetble.model.vo.VODataFilter;
 import com.sample.helmetble.service.BluetoothLeService;
 import com.sample.helmetble.service.SampleGattAttributes;
+import com.sample.helmetble.view.dialog.ConnectFailDialog;
 import com.sample.helmetble.view.dialog.ConnectOKDialog;
 import com.sample.helmetble.view.fragment.ControllerFragment;
 import com.sample.helmetble.view.fragment.GraphFragment;
@@ -136,6 +137,8 @@ public class MainActivity extends BaseActivity {
             if (BluetoothLeService.ACTION_GATT_CONNECTED.equals(action)) {
                 isConnected = true;
             } else if (BluetoothLeService.ACTION_GATT_DISCONNECTED.equals(action)) {
+                ConnectFailDialog dialog = new ConnectFailDialog(MainActivity.this);
+                dialog.show();
                 isConnected = false;
             } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
                 ConnectOKDialog dialog = new ConnectOKDialog(MainActivity.this);
